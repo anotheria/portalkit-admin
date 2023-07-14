@@ -19,7 +19,8 @@
           "apps/admin-case-drive/src/favicon.ico",
           "apps/admin-case-drive/src/assets"
         ],
-        "styles": ["apps/admin-case-drive/src/styles.scss"],
+        "styles": ["apps/admin-case-drive/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.less"],
         "scripts": []
       },
       "configurations": {

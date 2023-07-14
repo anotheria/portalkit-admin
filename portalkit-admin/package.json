@@ -2,7 +2,14 @@
   "name": "@portalkit-admin/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start:admin-tcl": "npx nx serve admin-tcl --port 4203",
+    "build:admin-tcl": "npx nx build admin-tcl",
+    "lint:admin-tcl": "npx nx lint admin-tcl",
+    "start:admin-case-drive": "npx nx serve admin-case-drive --port 4204",
+    "build:admin-case-drive": "npx nx build admin-case-drive",
+    "lint:admin-case-drive": "npx nx lint admin-case-drive"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",
@@ -10,10 +17,13 @@
     "@angular/compiler": "~16.1.0",
     "@angular/core": "~16.1.0",
     "@angular/forms": "~16.1.0",
+    "@angular/material": "^16.1.5",
     "@angular/platform-browser": "~16.1.0",
     "@angular/platform-browser-dynamic": "~16.1.0",
     "@angular/router": "~16.1.0",
     "@nx/angular": "16.5.2",
+    "angular-material": "^1.2.5",
+    "ng-zorro-antd": "^16.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
