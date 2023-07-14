@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@nx/angular": "^16.5.2"
+  }
+}
