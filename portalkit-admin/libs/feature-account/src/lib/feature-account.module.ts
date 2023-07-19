@@ -4,7 +4,7 @@ import {ACCOUNT_FEATURE_NAME, FeatureDefinition, FeatureRegistryService} from "@
 
 const featureAccountsDefinition: FeatureDefinition = {
   name: ACCOUNT_FEATURE_NAME,
-  links: { domain: ['accounts']}
+  links: { domain: ['account']}
 }
 
 @NgModule({

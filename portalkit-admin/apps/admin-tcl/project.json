@@ -19,7 +19,8 @@
           "apps/admin-tcl/src/favicon.ico",
           "apps/admin-tcl/src/assets"
         ],
-        "styles": ["apps/admin-tcl/src/styles.scss"],
+        "styles": ["apps/admin-tcl/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.less"],
         "scripts": []
       },
       "configurations": {

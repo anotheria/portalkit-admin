@@ -19,7 +19,8 @@
       "@portalkit-admin/core": ["libs/core/src/index.ts"],
       "@portalkit-admin/feature-account": ["libs/feature-account/src/index.ts"],
       "@portalkit-admin/feature-customer-care": ["libs/feature-customer-care/src/index.ts"],
-      "@portalkit-admin/feature-product": ["libs/feature-product/src/index.ts"]
+      "@portalkit-admin/feature-product": ["libs/feature-product/src/index.ts"],
+      "@portalkit-admin/feature-users": ["libs/feature-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
