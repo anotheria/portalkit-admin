@@ -20,12 +20,12 @@ export class LoginApi extends BaseApi {
     this.basePath = configService.appConfig.apiEndpointUrl;
   }
 
-  doLogin(email: string, password: string): Observable<LoginDataDTO> {
-    return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/auth/login`, { email, password })
+  doLogin(login: string, password: string): Observable<LoginDataDTO> {
+    return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/auth/login`, { login, password })
       .pipe(
         map((response) => {
           if (response.success) {
-            return response.results.competences;
+            return response.results;
           } else {
             super.handleErrorResponse(response);
           }

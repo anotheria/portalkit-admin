@@ -14,7 +14,7 @@ export class LoginEffects {
   doLogin$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loginActions.login),
-      concatMap((action) => this.loginService.login({email: action.email, password: action.password }).pipe(
+      concatMap(({loginRequest}) => this.loginService.login(loginRequest).pipe(
         map((loginData: LoginData) =>  loginActions.loginSuccess({data: loginData})),
         catchError((error) => of(loginActions.loginError({error})))
       )

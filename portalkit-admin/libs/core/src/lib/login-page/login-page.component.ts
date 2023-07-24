@@ -22,8 +22,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private readonly loginService: LoginService,
     private readonly router: Router) {}
 
-  get email(): FormControl {
-    return this.formGroup.get('email') as FormControl;
+  get login(): FormControl {
+    return this.formGroup.get('login') as FormControl;
   }
   get password(): FormControl {
     return this.formGroup.get('password') as FormControl;
@@ -36,8 +36,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
 
     this.formGroup = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      login: new FormControl('', [Validators.required, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.required]),
     });
   }
 
@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((response: LoginData) => {
-        if(response){
+        if(response.token){
           this.loginService.loginSuccess(response);
 
           const route =  DEFAULT_AUTHENTICATED_ROUTE;

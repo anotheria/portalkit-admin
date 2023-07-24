@@ -1,12 +1,12 @@
 export interface LoginRequest {
-  email: string;
+  login: string;
   password: string;
 }
 export interface LoginData {
-  authToken: string | null;
+  token: string | null;
   login: string | null
 }
 export interface LoginDataDTO {
-  authToken: string;
+  token: string;
   login: string
 }

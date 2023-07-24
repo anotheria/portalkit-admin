@@ -18,7 +18,7 @@ export interface LoginState {
 const initialState: LoginState = {
   status: { loaded: false, loading: false, error: null },
   data: {
-    authToken: null,
+    token: null,
     login: null,
   },
 };

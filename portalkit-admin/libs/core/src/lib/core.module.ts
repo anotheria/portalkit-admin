@@ -11,6 +11,8 @@ import { TokenInterceptor } from "./authorization/token-interceptor";
 import {CoreRoutingModule} from "./core-routing.module";
 import {HomePageModule} from "./home-page/home-page.module";
 import {TranslateModule} from "@ngx-translate/core";
+import {LoginEffects} from "./login-page/login-page-data/store/login.effects";
+import {loginFeatureName, loginReducer} from "./login-page/login-page-data/store/login.reducer";
 
 @NgModule({
   imports: [
@@ -31,6 +33,9 @@ import {TranslateModule} from "@ngx-translate/core";
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+
+    StoreModule.forFeature(loginFeatureName, loginReducer),
+    EffectsModule.forFeature([LoginEffects]),
   ],
 })
 export class CoreModule {

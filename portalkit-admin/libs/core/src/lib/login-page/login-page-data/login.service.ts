@@ -19,9 +19,9 @@ export class LoginService {
   }
 
   public login(loginRequest: LoginRequest): Observable<LoginData> {
-    return this.loginApi.doLogin(loginRequest.email, loginRequest.password).pipe(
+    return this.loginApi.doLogin(loginRequest.login, loginRequest.password).pipe(
       map((dto: LoginDataDTO) => this.loginSerializer.deserializeLoginData(dto)),
-      tap((loginData)  => this.setToken(loginData.authToken)),
+      tap((loginData)  => this.setToken(loginData.token)),
       catchError(this.handleError));
   }
 
@@ -67,9 +67,9 @@ export class LoginService {
     }
   }
 
-  private handleError(error: any): Observable<any> {
+  private handleError(errorResponse: any): Observable<any> {
     return throwError(() => {
-      return error.status;
+      return errorResponse.error.message || errorResponse.error.errorKey;
     });
   }
 

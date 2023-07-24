@@ -15,11 +15,11 @@
 
          <mat-form-field appearance="outline">
               <mat-label>{{'loginpage.username.label' | translate}}</mat-label>
-              <input autocomplete="off" formControlName="email" matInput type="text" />
-              <mat-error *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+              <input autocomplete="off" formControlName="login" matInput type="text" />
+              <mat-error *ngIf="login.errors?.['email'] && (login.dirty || login.touched)">
                 {{'validation.invalid' | translate}}
               </mat-error>
-              <mat-error *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+              <mat-error *ngIf="login.errors?.['required'] && (login.dirty || login.touched)">
                 {{'validation.required' | translate}}
               </mat-error>
             </mat-form-field>
@@ -27,10 +27,10 @@
             <mat-form-field appearance="outline">
               <mat-label>{{'loginpage.password.label' | translate}}</mat-label>
               <input autocomplete="off" formControlName="password" matInput type="password" />
-              <mat-error *ngIf="password.errors?.['required'] && (email.dirty || email.touched)">
+              <mat-error *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
                 {{'validation.required' | translate}}
               </mat-error>
-              <mat-error *ngIf="password.hasError('minlength') && (email.dirty || email.touched)">
+              <mat-error *ngIf="password.hasError('minlength') && (password.dirty || password.touched)">
                 {{'validation.invalid' | translate}}
               </mat-error>
             </mat-form-field>
