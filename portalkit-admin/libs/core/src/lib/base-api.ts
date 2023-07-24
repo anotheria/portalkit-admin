@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import {NotificationsSnackService} from "@portalkit-admin/core";
+import {NotificationsSnackService} from "./notifications-snack";
 import {ApiResponseDTO} from "./common.types";
 
 export class BaseApi {

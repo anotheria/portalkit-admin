@@ -2,7 +2,7 @@ import {Inject, Injectable} from "@angular/core";
 import {APP_CONFIGURATION} from "../core.di";
 import {AppConfig} from "../core.types";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConfigService {
 
   get appConfig(): AppConfig {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LoginPageModule} from "../../../core/src/lib/login-page/login-page.module";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
-  imports: [CommonModule,  LoginPageModule],
+  imports: [CommonModule, MatSnackBarModule],
 })
 export class CommonUiModule {}

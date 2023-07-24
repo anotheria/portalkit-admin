@@ -1,17 +1,29 @@
 import { NgModule } from "@angular/core";
-import { NoPreloading, RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
+import { LoginPageModule } from "./login-page/login-page.module";
+import {HomePageComponent} from "./home-page/home-page.component";
+import {LoginPageComponent} from "./login-page/login-page.component";
 
 const routes: Routes = [
   {
+    path: "",
+    component: HomePageComponent,
+    runGuardsAndResolvers: 'always',
+  },
+  {
     path: "login",
-    loadChildren: () => import("./login-page/login-page.module").then((m) => m.LoginPageModule),
+    component: LoginPageComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/'
   },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      preloadingStrategy: NoPreloading,
+      scrollPositionRestoration: "enabled",
       onSameUrlNavigation: "reload",
     }),
   ],
