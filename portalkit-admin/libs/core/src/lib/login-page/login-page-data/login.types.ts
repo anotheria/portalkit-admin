@@ -3,8 +3,8 @@ export interface LoginRequest {
   password: string;
 }
 export interface LoginData {
-  authToken: string;
-  login: string
+  authToken: string | null;
+  login: string | null
 }
 export interface LoginDataDTO {
   authToken: string;

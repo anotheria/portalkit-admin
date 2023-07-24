@@ -2,9 +2,9 @@ import {Injectable, Injector} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ConfigService} from "@portalkit-admin/core";
 import {map, Observable} from "rxjs";
-import {ApiResponseDTO} from "../../common.types";
+import {ApiResponseDTO} from "../../../../../common-ui/src/lib/common.types";
 import {LoginDataDTO} from "./login.types";
-import {BaseApi} from "../../base-api";
+import {BaseApi} from "../../../../../common-ui/src/lib/base-api";
 
 @Injectable({
   providedIn: 'root',

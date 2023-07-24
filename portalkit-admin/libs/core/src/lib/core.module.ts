@@ -1,19 +1,20 @@
-import {isDevMode, ModuleWithProviders, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {AppConfig} from "./core.types";
-import {APP_CONFIGURATION} from "./core.di";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {EffectsModule} from "@ngrx/effects";
-import {RouterModule} from "@angular/router";
-import {StoreModule} from "@ngrx/store";
-import {StoreRouterConnectingModule} from "@ngrx/router-store";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {TokenInterceptor} from "../../../common-ui/src/lib/login-page/login-page-data/token-interceptor";
+import { isDevMode, ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { AppConfig } from "./core.types";
+import { APP_CONFIGURATION } from "./core.di";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptor } from "./authorization/token-interceptor";
+import {CoreRoutingModule} from "./core-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot([]),
+    CoreRoutingModule,
     StoreModule.forRoot(
       {},
       {
@@ -22,13 +23,12 @@ import {TokenInterceptor} from "../../../common-ui/src/lib/login-page/login-page
           strictActionImmutability: true,
           strictStateImmutability: true,
         },
-      }
+      },
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
-
 })
 export class CoreModule {
   static configure(appConfiguration: AppConfig): ModuleWithProviders<CoreModule> {
