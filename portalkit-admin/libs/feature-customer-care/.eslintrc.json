@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "portalkit-admin",
+            "prefix": "pk",
             "style": "kebab-case"
           }
         ]

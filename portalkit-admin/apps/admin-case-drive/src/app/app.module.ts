@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
@@ -9,6 +9,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {EnabledFeaturesModule} from "../configuration/enabled-features.module";
+import {CoreModule} from "@portalkit-admin/core";
+import * as config from "../assets/config.json";
+
+const CoreModuleWithProviders = CoreModule.configure(config);
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +21,7 @@ import {EnabledFeaturesModule} from "../configuration/enabled-features.module";
     NzLayoutModule, NzMenuModule,
     NzIconModule,
     NzBreadCrumbModule, MatIconModule],
-  providers: [],
+  providers: [...CoreModuleWithProviders.providers as Array<Provider>],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

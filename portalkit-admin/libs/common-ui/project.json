@@ -2,7 +2,7 @@
   "name": "common-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/common-ui/src",
-  "prefix": "portalkit-admin",
+  "prefix": "pk",
   "tags": [],
   "projectType": "library",
   "targets": {

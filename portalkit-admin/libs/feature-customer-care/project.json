@@ -2,7 +2,7 @@
   "name": "feature-customer-care",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/feature-customer-care/src",
-  "prefix": "portalkit-admin",
+  "prefix": "pk",
   "tags": [],
   "projectType": "library",
   "targets": {

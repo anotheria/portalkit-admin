@@ -1,11 +1,11 @@
 import {RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {FeatureProductModule} from "@portalkit-admin/feature-product";
-import {FeatureUsersModule} from "@portalkit-admin/feature-users";
+import {FeatureAccountModule} from "@portalkit-admin/feature-account";
 
 @NgModule({
   imports: [
-    FeatureUsersModule,
+    FeatureAccountModule,
     FeatureProductModule
   ],
   providers: [], // used to detect readiness

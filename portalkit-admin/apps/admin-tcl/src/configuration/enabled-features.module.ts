@@ -2,11 +2,11 @@ import {RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {FeatureCustomerCareModule} from "@portalkit-admin/feature-customer-care";
 import {FeatureProductModule} from "@portalkit-admin/feature-product";
-import {FeatureUsersModule} from "@portalkit-admin/feature-users";
+import {FeatureAccountModule} from "@portalkit-admin/feature-account";
 
 @NgModule({
   imports: [
-    FeatureUsersModule,
+    FeatureAccountModule,
     FeatureCustomerCareModule,
     FeatureProductModule,
   ],

@@ -2,7 +2,7 @@
   "name": "admin-case-drive",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "portalkit-admin",
+  "prefix": "pk",
   "sourceRoot": "apps/admin-case-drive/src",
   "tags": [],
   "targets": {

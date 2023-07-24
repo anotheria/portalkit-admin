@@ -1,0 +1,44 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="toolbar-spacer"></span>
+    <div class="logo-container on-page">
+      <img class="logo-img" src="/assets/images/patber-logo.svg" alt="Patber logo">
+    </div>
+    <span class="toolbar-spacer"></span>
+    <button class='header-button' mat-flat-button color="primary">{{'loginpage.marketingpage.link' | translate}}</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class='login-container'>
+    <div class="login-form">
+      <form (ngSubmit)="onLoginFormSubmit()" [formGroup]="formGroup" novalidate>
+
+         <mat-form-field appearance="outline">
+              <mat-label>{{'loginpage.username.label' | translate}}</mat-label>
+              <input autocomplete="off" formControlName="email" matInput type="text" />
+              <mat-error *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+                {{'validation.invalid' | translate}}
+              </mat-error>
+              <mat-error *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+                {{'validation.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'loginpage.password.label' | translate}}</mat-label>
+              <input autocomplete="off" formControlName="password" matInput type="password" />
+              <mat-error *ngIf="password.errors?.['required'] && (email.dirty || email.touched)">
+                {{'validation.required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="password.hasError('minlength') && (email.dirty || email.touched)">
+                {{'validation.invalid' | translate}}
+              </mat-error>
+            </mat-form-field>
+
+        <button mat-flat-button class='button-login'
+                type="submit">{{'loginpage.login.button' | translate}}</button>
+        <div *ngIf="errorResponse" class="custom-error">{{(errorResponse ?? 'toast.general.error') | translate }}</div>
+      </form>
+      <a mat-flat-button routerLink='/password-forgotten'>{{'loginpage.retrievepassword.link' | translate}}</a>
+  </div>
+</div>
