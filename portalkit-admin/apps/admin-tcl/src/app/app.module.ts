@@ -7,9 +7,12 @@ import {EnabledFeaturesModule} from "../configuration/enabled-features.module";
 import {CommonUiModule} from "@portalkit-admin/common-ui";
 import {CoreModule} from "@portalkit-admin/core";
 import * as config from "../assets/config.json";
+import { default as enTranslations } from '../i18n/translate.en';
 import {RouterModule} from "@angular/router";
 
-const CoreModuleWithProviders = CoreModule.configure(config);
+const CoreModuleWithProviders = CoreModule.configure(
+  {...config, translations: {'en': enTranslations}
+  });
 
 @NgModule({
   declarations: [AppComponent],
