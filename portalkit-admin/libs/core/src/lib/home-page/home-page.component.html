@@ -4,19 +4,32 @@
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-submenu nzTitle="Accounts" nzIcon='team'>
         <ul>
-          <li nz-menu-item>Submenu 01</li>
-          <li nz-menu-item>Submenu 02</li>
-          <li nz-menu-item>Submenu 03</li>
+          <li nz-menu-item><a [routerLink]="'/accounts'">Manage</a></li>
+          <li nz-menu-item><a [routerLink]="'/accounts'">Bulk operations</a></li>
+          <li nz-menu-item><a [routerLink]="'/accounts'">Archive</a></li>
+          <li nz-menu-item><a [routerLink]="'/accounts'">Scam history</a></li>
+          <li nz-menu-item><a [routerLink]="'/accounts'">User new</a></li>
         </ul>
       </li>
       <li nz-submenu nzTitle="Customer care" nzIcon='customer-service'>
         <ul>
-          <li nz-menu-item>Submenu 01</li>
+          <li nz-menu-item>VIP care</li>
+          <li nz-menu-item>Chat tool</li>
+          <li nz-menu-item>Scam</li>
+          <li nz-menu-item>Message approving</li>
+          <li nz-menu-item>Post approving</li>
+          <li nz-menu-item>Quarantine</li>
+          <li nz-menu-item>Paymant</li>
         </ul>
       </li>
       <li nz-submenu nzTitle="Product" nzIcon='star'>
         <ul>
-          <li nz-menu-item>Submenu 01</li>
+          <li nz-menu-item>CG edit tool</li>
+          <li nz-menu-item>CG</li>
+          <li nz-menu-item>Leads</li>
+          <li nz-menu-item>Content</li>
+          <li nz-menu-item>Reporting</li>
+          <li nz-menu-item>Phrases</li>
         </ul>
       </li>
       <li nz-submenu [nzTitle]="loginName" nzIcon='user'>
@@ -34,7 +47,6 @@
     <nz-content>
       <div class="inner-content">
         Available modules: {{navItems}}
-        <a [routerLink]="'accounts'">accountsLink</a>
         <ng-content></ng-content>
       </div>
     </nz-content>
