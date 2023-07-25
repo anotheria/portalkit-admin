@@ -21,7 +21,10 @@
       </li>
       <li nz-submenu nzTitle="admin" nzIcon='user'>
         <ul>
-          <li nz-menu-item>Logout</li>
+          <li nz-menu-item (click)="onLogout()" (mousedown)="onLogout()">
+            <span nz-icon nzType="poweroff"></span>
+            <span>Logout</span>
+          </li>
         </ul>
       </li>
     </ul>

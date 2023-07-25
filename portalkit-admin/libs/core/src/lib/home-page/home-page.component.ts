@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import {FeatureRegistryService} from "../feature";
+import {LoginService} from "../login-page/login-page-data/login.service";
 
 @Component({
   selector: "pk-home-page",
@@ -9,7 +10,12 @@ import {FeatureRegistryService} from "../feature";
 export class HomePageComponent {
   navItems: string | any [];
 
-  constructor(private featureRegistryService: FeatureRegistryService) {
+  constructor(private readonly featureRegistryService: FeatureRegistryService,
+              private readonly loginService: LoginService) {
     this.navItems = this.featureRegistryService.availableFeatures().map((f) => f.links?.domain);
+  }
+
+  onLogout() {
+    this.loginService.logout();
   }
 }
