@@ -15,10 +15,10 @@ const routes: Routes = [
     path: "login",
     component: LoginPageComponent,
   },
-  {
-    path: '**',
-    redirectTo: '/'
-  },
+  //{
+  //  path: '**',
+  //  redirectTo: '/'
+  //},
 ];
 
 @NgModule({

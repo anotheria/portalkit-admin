@@ -1,36 +1,39 @@
 import { isDevMode, ModuleWithProviders, NgModule } from "@angular/core";
-import {CommonModule, registerLocaleData} from "@angular/common";
+import { CommonModule, registerLocaleData } from "@angular/common";
 import { AppConfig } from "./core.types";
 import { APP_CONFIGURATION } from "./core.di";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TokenInterceptor } from "./authorization/token-interceptor";
-import {CoreRoutingModule} from "./core-routing.module";
-import {HomePageModule} from "./home-page/home-page.module";
-import {MissingTranslationHandler, TranslateModule} from "@ngx-translate/core";
-import {LoginEffects} from "./login-page/login-page-data/store/login.effects";
-import {loginFeatureName, loginReducer} from "./login-page/login-page-data/store/login.reducer";
-import {LoginPageModule} from "./login-page/login-page.module";
-import {CustomMissingTranslationHandler} from "./translations/custom-missing-translation-handler";
-import {NotTranslatedService} from "./translations/not-translated.service";
-import en from '@angular/common/locales/en';
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
-import {NZ_ICONS} from "ng-zorro-antd/icon";
+import { CoreRoutingModule } from "./core-routing.module";
+import { HomePageModule } from "./home-page/home-page.module";
+import { MissingTranslationHandler, TranslateModule } from "@ngx-translate/core";
+import { LoginEffects } from "./login-page/login-page-data/store/login.effects";
+import { loginFeatureName, loginReducer } from "./login-page/login-page-data/store/login.reducer";
+import { LoginPageModule } from "./login-page/login-page.module";
+import { CustomMissingTranslationHandler } from "./translations/custom-missing-translation-handler";
+import { NotTranslatedService } from "./translations/not-translated.service";
+import en from "@angular/common/locales/en";
+import { IconDefinition } from "@ant-design/icons-angular";
+import * as AllIcons from "@ant-design/icons-angular/icons";
+import { NZ_ICONS } from "ng-zorro-antd/icon";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesignIcons[key]);
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     CoreRoutingModule,
     HomePageModule,
     LoginPageModule,
@@ -38,8 +41,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
       missingTranslationHandler: {
         provide: MissingTranslationHandler,
         useClass: CustomMissingTranslationHandler,
-        deps: [NotTranslatedService]
-      }
+        deps: [NotTranslatedService],
+      },
     }),
     StoreModule.forRoot(
       {},
@@ -58,7 +61,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     StoreModule.forFeature(loginFeatureName, loginReducer),
     EffectsModule.forFeature([LoginEffects]),
   ],
-  exports: [TranslateModule]
+  exports: [TranslateModule],
 })
 export class CoreModule {
   static configure(appConfiguration: AppConfig): ModuleWithProviders<CoreModule> {
@@ -71,7 +74,7 @@ export class CoreModule {
           useClass: TokenInterceptor,
           multi: true,
         },
-        { provide: NZ_ICONS, useValue: icons }
+        { provide: NZ_ICONS, useValue: icons },
       ],
     };
   }

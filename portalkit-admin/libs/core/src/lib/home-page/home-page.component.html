@@ -34,8 +34,10 @@
     <nz-content>
       <div class="inner-content">
         Available modules: {{navItems}}
+        <a [routerLink]="'accounts'">accountsLink</a>
+        <ng-content></ng-content>
       </div>
     </nz-content>
-    <nz-footer>Footer content</nz-footer>
   </nz-layout>
 </nz-layout>
+
