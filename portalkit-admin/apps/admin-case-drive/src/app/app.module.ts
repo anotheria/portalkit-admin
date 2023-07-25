@@ -1,26 +1,26 @@
 import {NgModule, Provider} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import {NzLayoutModule} from "ng-zorro-antd/layout";
-import {NzMenuModule} from "ng-zorro-antd/menu";
-import {NzIconModule} from "ng-zorro-antd/icon";
-import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
-import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatIconModule} from "@angular/material/icon";
+import {HttpClientModule} from "@angular/common/http";
 import {EnabledFeaturesModule} from "../configuration/enabled-features.module";
+import {CommonUiModule} from "@portalkit-admin/common-ui";
 import {CoreModule} from "@portalkit-admin/core";
 import * as config from "../assets/config.json";
+import { default as enTranslations } from '../i18n/translate.en';
+import {RouterModule} from "@angular/router";
 
-const CoreModuleWithProviders = CoreModule.configure(config);
+const CoreModuleWithProviders = CoreModule.configure(
+  {...config, translations: {'en': enTranslations}
+  });
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule,
+    RouterModule,
+    CoreModule,
     EnabledFeaturesModule,
-    NzLayoutModule, NzMenuModule,
-    NzIconModule,
-    NzBreadCrumbModule, MatIconModule],
+    CommonUiModule],
   providers: [...CoreModuleWithProviders.providers as Array<Provider>],
   bootstrap: [AppComponent],
 })

@@ -19,7 +19,7 @@
           <li nz-menu-item>Submenu 01</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="admin" nzIcon='user'>
+      <li nz-submenu [nzTitle]="loginName" nzIcon='user'>
         <ul>
           <li nz-menu-item (click)="onLogout()" (mousedown)="onLogout()">
             <span nz-icon nzType="poweroff"></span>

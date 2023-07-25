@@ -5,6 +5,6 @@ export function isUserDataLoadedOrLoading(state: { [loginFeatureName]: LoginStat
   const status = state[loginFeatureName].status;
   return status.loaded || status.loading;
 }
-export function selectUserData(state: { [loginFeatureName]: LoginState }): LoginData {
+export function selectLoginData(state: { [loginFeatureName]: LoginState }): LoginData {
   return state[loginFeatureName].data;
 }

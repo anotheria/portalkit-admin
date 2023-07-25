@@ -5,7 +5,7 @@ import { filter, map, Observable, take } from "rxjs";
 import { LoginService } from "./login.service";
 import { Store } from "@ngrx/store";
 import * as actions from "./store/login.action";
-import { isUserDataLoadedOrLoading, selectUserData } from "./store/login.selectors";
+import { isUserDataLoadedOrLoading, selectLoginData } from "./store/login.selectors";
 import { LoginState, loginFeatureName } from "./store/login.reducer";
 import { LoginData } from "./login.types";
 import { switchMap } from "rxjs/operators";
@@ -46,7 +46,7 @@ export class LoginGuard implements CanActivate {
         filter((state) => state.status.loaded),
         take(1),
         switchMap(() => {
-          return this.store.select(selectUserData).pipe(
+          return this.store.select(selectLoginData).pipe(
             map((loginData: LoginData) => {
               if (!(loginData.token || loginData.login)) {
                 this.loginService.logout();
