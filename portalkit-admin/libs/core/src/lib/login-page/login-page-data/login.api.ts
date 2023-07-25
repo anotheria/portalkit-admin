@@ -38,7 +38,7 @@ export class LoginApi extends BaseApi {
       .pipe(
         map((response) => {
           if (response.success) {
-            return response.results.competences;
+            return response.results;
           } else {
             super.handleErrorResponse(response);
           }

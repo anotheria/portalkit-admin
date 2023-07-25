@@ -13,12 +13,14 @@ import {HomePageModule} from "./home-page/home-page.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {LoginEffects} from "./login-page/login-page-data/store/login.effects";
 import {loginFeatureName, loginReducer} from "./login-page/login-page-data/store/login.reducer";
+import {LoginPageModule} from "./login-page/login-page.module";
 
 @NgModule({
   imports: [
     CommonModule,
     CoreRoutingModule,
     HomePageModule,
+    LoginPageModule,
     TranslateModule.forRoot(),
     StoreModule.forRoot(
       {},
@@ -37,6 +39,7 @@ import {loginFeatureName, loginReducer} from "./login-page/login-page-data/store
     StoreModule.forFeature(loginFeatureName, loginReducer),
     EffectsModule.forFeature([LoginEffects]),
   ],
+  exports: [TranslateModule]
 })
 export class CoreModule {
   static configure(appConfiguration: AppConfig): ModuleWithProviders<CoreModule> {
