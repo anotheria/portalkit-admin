@@ -1,5 +1,5 @@
 import { isDevMode, ModuleWithProviders, NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import {CommonModule, registerLocaleData} from "@angular/common";
 import { AppConfig } from "./core.types";
 import { APP_CONFIGURATION } from "./core.di";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -16,6 +16,17 @@ import {loginFeatureName, loginReducer} from "./login-page/login-page-data/store
 import {LoginPageModule} from "./login-page/login-page.module";
 import {CustomMissingTranslationHandler} from "./translations/custom-missing-translation-handler";
 import {NotTranslatedService} from "./translations/not-translated.service";
+import en from '@angular/common/locales/en';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import {NZ_ICONS} from "ng-zorro-antd/icon";
+
+registerLocaleData(en);
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
   imports: [
@@ -60,6 +71,7 @@ export class CoreModule {
           useClass: TokenInterceptor,
           multi: true,
         },
+        { provide: NZ_ICONS, useValue: icons }
       ],
     };
   }

@@ -1,31 +1,28 @@
 <nz-layout>
   <nz-sider nzCollapsible nzWidth="200px">
-    <div class="logo"></div>
+    <div class="logo">TCL</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
-        <mat-icon>pie_chart</mat-icon>
-        <span>Option 1</span>
-      </li>
-      <li nz-menu-item>
-        <mat-icon>desktop_windows</mat-icon>
-        <span>Option 2</span>
-      </li>
-      <li nz-submenu nzTitle="User">
+      <li nz-submenu nzTitle="Accounts" nzIcon='team'>
         <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
+          <li nz-menu-item>Submenu 01</li>
+          <li nz-menu-item>Submenu 02</li>
+          <li nz-menu-item>Submenu 03</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Team">
+      <li nz-submenu nzTitle="Customer care" nzIcon='customer-service'>
         <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
+          <li nz-menu-item>Submenu 01</li>
         </ul>
       </li>
-      <li nz-menu-item>
-        <mat-icon>insert_drive_file</mat-icon>
-        <span>File</span>
+      <li nz-submenu nzTitle="Product" nzIcon='star'>
+        <ul>
+          <li nz-menu-item>Submenu 01</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="admin" nzIcon='user'>
+        <ul>
+          <li nz-menu-item>Logout</li>
+        </ul>
       </li>
     </ul>
   </nz-sider>
