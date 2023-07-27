@@ -5,7 +5,7 @@ import {AccountActions} from "./account.actions";
 import {catchError, map, of, switchMap} from "rxjs";
 
 @Injectable()
-export class InvoiceEffects {
+export class AccountEffects {
   constructor(private actions$: Actions, private accountService: AccountService) {
   }
 

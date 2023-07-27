@@ -66,7 +66,7 @@ export interface AccountsState {
   entity: AccountsEntityState,
 }
 
-export const MissionsReducer = combineReducers<AccountsState>({
+export const AccountsReducer = combineReducers<AccountsState>({
   list: AccountsListReducer,
   entity: AccountsEntityReducer,
 });
