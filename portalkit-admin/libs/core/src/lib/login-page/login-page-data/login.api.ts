@@ -25,9 +25,10 @@ export class LoginApi extends BaseApi {
       .pipe(
         map((response) => {
           if (response.success) {
-            return response.results;
+            return response.results as LoginDataDTO;
           } else {
             super.handleErrorResponse(response);
+            return {} as LoginDataDTO;
           }
         }),
       );
@@ -38,9 +39,10 @@ export class LoginApi extends BaseApi {
       .pipe(
         map((response) => {
           if (response.success) {
-            return response.results;
+            return response.results as LoginDataDTO;
           } else {
             super.handleErrorResponse(response);
+            return {} as LoginDataDTO;
           }
         }),
       );

@@ -23,8 +23,10 @@ export interface Account {
   status: number;
 }
 
-export interface AccountsRequest {
-
+export interface AccountFilter {
+  searchTerm: string;
+  pageNumber: number;
+  itemsOnPage: number;
 }
 
 export interface AccountId {

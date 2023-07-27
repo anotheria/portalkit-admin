@@ -1,7 +1,13 @@
 import { Injectable, Injector } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import { map, Observable } from "rxjs";
-import { BaseApi, ConfigService, ResponseData, ApiResponseDTO, PaginatedContent } from "@portalkit-admin/core";
+import {
+  BaseApi,
+  ConfigService,
+  PaginatedContent,
+  ApiPaginatedResponseDTO, initialPaginatedContent, ApiResponseDTO
+} from "@portalkit-admin/core";
+import { AccountDTO, AccountFilter} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountApi extends BaseApi {
@@ -16,16 +22,31 @@ export class AccountApi extends BaseApi {
     this.basePath = this.configService.appConfig.apiEndpointUrl;
   }
 
-  loadAccounts(): Observable<PaginatedContent> {
-    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account`).pipe(
+  loadAccounts(filter: AccountFilter): Observable<PaginatedContent<AccountDTO>> {
+    const params = new HttpParams({
+      fromObject: {...filter},
+    });
+    return this.httpClient.get<ApiPaginatedResponseDTO<AccountDTO>>(`${this.basePath}/admin-api/account`, {params}).pipe(
       map((response) => {
         if (response.success) {
-          return (response.results as ResponseData).data;
+          return response.results.data;
         } else {
           super.handleErrorResponse(response);
-          return { pageNumber: 0, itemsOnPage: 0, totalItems: 0, content: [] } as PaginatedContent;
+          return initialPaginatedContent;
         }
       }),
+    );
+  }
+
+  loadAccount(id: string): Observable<AccountDTO> {
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/mission/${id}`, { observe: 'body'}).pipe(
+      map((response) => {
+        if(response.success) {
+          return response.results.account;
+        } else {
+          super.handleErrorResponse(response);
+        }
+      })
     );
   }
 }
