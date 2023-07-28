@@ -1,6 +1,6 @@
 import { Injectable, Injector } from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import { map, Observable } from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, map, Observable} from "rxjs";
 import {
   BaseApi,
   ConfigService,
@@ -35,6 +35,7 @@ export class AccountApi extends BaseApi {
           return initialPaginatedContent;
         }
       }),
+      catchError(super.handleHttpError)
     );
   }
 

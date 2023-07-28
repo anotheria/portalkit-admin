@@ -29,7 +29,7 @@ export class LoginService {
     return this.loginApi.getLoginData().pipe(
       map((dto: LoginDataDTO) => this.loginSerializer.deserializeLoginData(dto)),
       catchError((response: HttpErrorResponse) => {
-        if(response.status == 403) this.logout();
+        if(response.status == 401) this.logout();
         return EMPTY;
       })
     );

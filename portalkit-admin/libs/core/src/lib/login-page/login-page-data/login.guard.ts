@@ -24,7 +24,6 @@ export class LoginGuard implements CanActivate {
       return this.checkIfAllowedToUseSite();
     } else {
       this.loginService.logout();
-      this.router.navigate(["/login"]);
       return false;
     }
   }
@@ -50,10 +49,8 @@ export class LoginGuard implements CanActivate {
             map((loginData: LoginData) => {
               if (!(loginData.token || loginData.login)) {
                 this.loginService.logout();
-                this.router.navigate(["/login"]);
                 return false;
               }
-
               return true;
             }),
           );

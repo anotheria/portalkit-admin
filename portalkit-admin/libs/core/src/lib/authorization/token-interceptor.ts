@@ -1,7 +1,7 @@
 import { LoginService } from '../login-page/login-page-data/login.service';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,6 +16,12 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
     }
-    return next.handle(request);
+    return next.handle(request).pipe(catchError(err => {
+      if (err.status === 401) {
+        this.loginService.logout();
+      }
+      const error = err.error.message || err.statusText;
+      return throwError(error);
+    }));
   }
 }
