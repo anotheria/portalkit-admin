@@ -6,7 +6,18 @@ import {AccountPageModule} from "./account-page/account-page.module";
 
 const featureAccountsDefinition: FeatureDefinition = {
   name: ACCOUNT_FEATURE_NAME,
-  links: { domain: ['accounts']}
+  links: { domain: ['accounts']},
+  sideNavMenu: {
+    label: 'Accounts',
+    icon: 'team',
+  },
+  sideNavSubMenu: [
+    {label: 'Manage', routerLink: ['/accounts']},
+    {label: 'Bulk operations', routerLink: ['/accounts']},
+    {label: 'Archive', routerLink: ['/accounts']},
+    {label: 'Scam history', routerLink: ['/accounts']},
+    {label: 'User new', routerLink: ['/accounts']},
+  ]
 }
 
 @NgModule({

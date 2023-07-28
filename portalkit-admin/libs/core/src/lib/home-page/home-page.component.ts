@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from "@angular/core";
-import { FeatureRegistryService } from "../feature";
+import {FeatureDefinition, FeatureRegistryService} from "../feature";
 import { LoginService } from "../login-page/login-page-data/login.service";
 import { Subject, takeUntil, tap } from "rxjs";
 import { selectLoginData } from "../login-page/login-page-data/store/login.selectors";
@@ -12,7 +12,7 @@ import { Store } from "@ngrx/store";
   styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent implements OnDestroy {
-  navItems: string | any[];
+  features: FeatureDefinition[];
   loginName!: string;
   destroy$ = new Subject<void>();
 
@@ -21,7 +21,7 @@ export class HomePageComponent implements OnDestroy {
     private readonly loginService: LoginService,
     private readonly store: Store<{ [loginFeatureName]: LoginState }>,
   ) {
-    this.navItems = this.featureRegistryService.availableFeatures().map((f) => f.links?.domain);
+    this.features = this.featureRegistryService.availableFeatures();
     this.store
       .select(selectLoginData)
       .pipe(

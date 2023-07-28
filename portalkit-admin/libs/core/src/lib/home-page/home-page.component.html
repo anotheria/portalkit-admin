@@ -2,36 +2,18 @@
   <nz-sider nzCollapsible nzWidth="200px">
     <div class="logo">TCL</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu nzTitle="Accounts" nzIcon='team'>
+
+      <li *ngFor="let feature of features" nz-submenu [nzTitle]="feature.sideNavMenu.label" [nzIcon]="feature.sideNavMenu.icon">
         <ul>
-          <li nz-menu-item><a [routerLink]="'/accounts'">Manage</a></li>
-          <li nz-menu-item><a [routerLink]="'/accounts'">Bulk operations</a></li>
-          <li nz-menu-item><a [routerLink]="'/accounts'">Archive</a></li>
-          <li nz-menu-item><a [routerLink]="'/accounts'">Scam history</a></li>
-          <li nz-menu-item><a [routerLink]="'/accounts'">User new</a></li>
+          <li *ngFor="let menuItem of feature.sideNavSubMenu" nz-menu-item>
+            <a [routerLink]="menuItem.routerLink">
+              <!--<span nz-icon nzType="poweroff"></span>-->
+              <span>{{menuItem.label}}</span>
+            </a>
+          </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Customer care" nzIcon='customer-service'>
-        <ul>
-          <li nz-menu-item>VIP care</li>
-          <li nz-menu-item>Chat tool</li>
-          <li nz-menu-item>Scam</li>
-          <li nz-menu-item>Message approving</li>
-          <li nz-menu-item>Post approving</li>
-          <li nz-menu-item>Quarantine</li>
-          <li nz-menu-item>Paymant</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Product" nzIcon='star'>
-        <ul>
-          <li nz-menu-item>CG edit tool</li>
-          <li nz-menu-item>CG</li>
-          <li nz-menu-item>Leads</li>
-          <li nz-menu-item>Content</li>
-          <li nz-menu-item>Reporting</li>
-          <li nz-menu-item>Phrases</li>
-        </ul>
-      </li>
+
       <li nz-submenu [nzTitle]="loginName" nzIcon='user'>
         <ul>
           <li nz-menu-item (click)="onLogout()" (mousedown)="onLogout()">
@@ -46,7 +28,6 @@
     <nz-header></nz-header>
     <nz-content>
       <div class="inner-content">
-        Available modules: {{navItems}}
         <ng-content></ng-content>
       </div>
     </nz-content>

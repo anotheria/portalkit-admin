@@ -4,7 +4,20 @@ import {CUSTOMER_CARE_FEATURE_NAME, FeatureDefinition, FeatureRegistryService} f
 
 const featureAccountsDefinition: FeatureDefinition = {
   name: CUSTOMER_CARE_FEATURE_NAME,
-  links: { domain: ['customer-care']}
+  links: { domain: ['customer-care']},
+  sideNavMenu: {
+    label: 'Customer care',
+    icon: 'customer-service',
+  },
+  sideNavSubMenu: [
+    {label: 'VIP care', routerLink: ['/customer-care']},
+    {label: 'Chat tool', routerLink: ['/customer-care']},
+    {label: 'Scam', routerLink: ['/customer-care']},
+    {label: 'Message approving', routerLink: ['/customer-care']},
+    {label: 'Post approving', routerLink: ['/customer-care']},
+    {label: 'Quarantine', routerLink: ['/customer-care']},
+    {label: 'Paymant', routerLink: ['/customer-care']},
+  ]
 }
 
 @NgModule({

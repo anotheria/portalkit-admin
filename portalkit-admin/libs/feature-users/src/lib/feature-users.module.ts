@@ -4,7 +4,14 @@ import {FeatureDefinition, FeatureRegistryService, USERS_FEATURE_NAME} from "@po
 
 const featureUsersDefinition: FeatureDefinition = {
   name: USERS_FEATURE_NAME,
-  links: { domain: ['users']}
+  links: { domain: ['users']},
+  sideNavMenu: {
+    label: 'Users',
+    icon: 'star',
+  },
+  sideNavSubMenu: [
+    {label: 'Manage', routerLink: ['/users']},
+  ]
 }
 
 @NgModule({

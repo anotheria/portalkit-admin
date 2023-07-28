@@ -4,7 +4,19 @@ import {FeatureDefinition, FeatureRegistryService, PRODUCT_FEATURE_NAME} from "@
 
 const featureAccountsDefinition: FeatureDefinition = {
   name: PRODUCT_FEATURE_NAME,
-  links: { domain: ['product']}
+  links: { domain: ['product']},
+  sideNavMenu: {
+    label: 'Product',
+    icon: 'star',
+  },
+  sideNavSubMenu: [
+    {label: 'CG edit tool', routerLink: ['/product']},
+    {label: 'CG', routerLink: ['/product']},
+    {label: 'Leads', routerLink: ['/product']},
+    {label: 'Content', routerLink: ['/product']},
+    {label: 'Reporting', routerLink: ['/product']},
+    {label: 'Phrases', routerLink: ['/product']},
+  ]
 }
 
 @NgModule({
