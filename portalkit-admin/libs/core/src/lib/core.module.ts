@@ -9,7 +9,7 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TokenInterceptor } from "./authorization/token-interceptor";
 import { CoreRoutingModule } from "./core-routing.module";
-import { HomePageModule } from "./home-page/home-page.module";
+import { HomePageModule } from "./home-page";
 import { MissingTranslationHandler, TranslateModule } from "@ngx-translate/core";
 import { LoginEffects } from "./login-page/login-page-data/store/login.effects";
 import { loginFeatureName, loginReducer } from "./login-page/login-page-data/store/login.reducer";
@@ -21,6 +21,7 @@ import { IconDefinition } from "@ant-design/icons-angular";
 import * as AllIcons from "@ant-design/icons-angular/icons";
 import { NZ_ICONS } from "ng-zorro-antd/icon";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { en_US, NZ_I18N } from "ng-zorro-antd/i18n";
 
 registerLocaleData(en);
 
@@ -75,6 +76,7 @@ export class CoreModule {
           multi: true,
         },
         { provide: NZ_ICONS, useValue: icons },
+        { provide: NZ_I18N, useValue: en_US },
       ],
     };
   }

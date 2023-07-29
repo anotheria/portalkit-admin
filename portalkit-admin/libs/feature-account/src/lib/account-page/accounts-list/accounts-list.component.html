@@ -1,1 +1,35 @@
-<p *ngFor="let acc of accountList.content">{{acc.accountId.internalId}}</p>
+<nz-table #basicTable [nzData]="accountList.content"
+          nzPaginationPosition="both"
+          nzShowSizeChanger="true"
+          nzSize="small"
+          [nzFrontPagination]="false"
+          [nzLoading]="loading"
+          [nzTotal]="total"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th>Account Id</th>
+    <th>email</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.accountId.internalId }}</td>
+    <td>{{ data.email }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.status }}</td>
+    <td>
+      <a>edit</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>sign-as</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>set password</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

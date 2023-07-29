@@ -21,7 +21,7 @@ export class AccountPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(AccountActions.loadAccounts({filter: {searchTerm:'', itemsOnPage: 5, pageNumber: 0}}));
+    this.store.dispatch(AccountActions.loadAccounts({filter: {searchTerm:'', itemsOnPage: 20, pageNumber: 1}}));
   }
 
 }
