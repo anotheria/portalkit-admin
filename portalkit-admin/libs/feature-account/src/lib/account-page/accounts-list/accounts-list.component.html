@@ -1,6 +1,6 @@
 <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your username!">
+    <nz-form-control>
       <nz-input-group [nzSuffix]="suffixIconSearch">
         <input type="text" formControlName="searchTerm" nz-input placeholder="input search text" />
       </nz-input-group>
@@ -11,11 +11,15 @@
   </nz-form-item>
 </form>
 
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>
 
 <nz-table #basicTable [nzData]="accountList.content"
           nzPaginationPosition="both"
           nzShowSizeChanger="true"
           nzSize="small"
+          [nzShowTotal]="rangeTemplate"
           nzFrontPagination="false"
           [nzLoading]="loading"
           [nzTotal]="total"

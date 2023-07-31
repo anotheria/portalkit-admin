@@ -21,14 +21,15 @@ export class AccountsListComponent implements OnChanges, OnInit {
   validateForm!: UntypedFormGroup;
 
   submitForm(): void {
-    console.log('submit', this.validateForm.value);
+    const searchTerm = this.validateForm.get('searchTerm')?.value || '';
+    this.queryChange.emit({ pageNumber: 1, itemsOnPage: this.pageSize, searchTerm });
   }
 
   constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      searchTerm: [null, [Validators.required]],
+      searchTerm: [null],
     });
   }
 
