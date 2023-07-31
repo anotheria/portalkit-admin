@@ -1,36 +1,54 @@
-import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
-import {PaginatedContent} from "@portalkit-admin/core";
-import {Account} from "../account-page-data/account.types";
-import {NzTableQueryParams} from "ng-zorro-antd/table";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
+import { PaginatedContent } from "@portalkit-admin/core";
+import { Account, AccountFilter } from "../account-page-data/account.types";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: "pk-accounts-list",
   templateUrl: "./accounts-list.component.html",
   styleUrls: ["./accounts-list.component.scss"],
 })
-export class AccountsListComponent implements OnChanges {
+export class AccountsListComponent implements OnChanges, OnInit {
   @Input() accountList!: PaginatedContent<Account>;
+  @Output() queryChange = new EventEmitter<AccountFilter>();
 
   loading = true;
-  pageSize = 10;
-  pageIndex = 1;
-  total = 1;
+  pageSize!: number;
+  pageIndex!: number;
+  total!: number;
+
+  validateForm!: UntypedFormGroup;
+
+  submitForm(): void {
+    console.log('submit', this.validateForm.value);
+  }
+
+  constructor(private fb: UntypedFormBuilder) {}
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      searchTerm: [null, [Validators.required]],
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['accountList']) {
-      this.loading=false;
+    if (changes["accountList"] && this.accountList.pageNumber) {
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
+      this.loading = false;
     }
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
-    console.log(params);
+    if(this.loading) return;
     const { pageSize, pageIndex, sort, filter } = params;
-    const currentSort = sort.find(item => item.value !== null);
+    const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
-    //this.loadDataFromServer(pageIndex, pageSize, sortField, sortOrder, filter);
+    this.queryChange.emit({ pageNumber: pageIndex, itemsOnPage: pageSize, searchTerm: "" });
+    this.loading = true;
   }
+
 }

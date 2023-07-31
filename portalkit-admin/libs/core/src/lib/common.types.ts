@@ -41,3 +41,4 @@ export const initialStatusState: StatusState = {
   loaded: false,
   error: null
 }
+

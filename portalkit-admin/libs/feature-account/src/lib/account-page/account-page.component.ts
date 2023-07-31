@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {PaginatedContent} from "@portalkit-admin/core";
-import {Account} from "./account-page-data/account.types";
+import {Account, AccountFilter} from "./account-page-data/account.types";
 import {Store} from "@ngrx/store";
 import {accountsFeature, AccountsState} from "./account-page-data/store/account.reducer";
 import {selectAccountList} from "./account-page-data/store/account.selector";
@@ -21,7 +21,15 @@ export class AccountPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(AccountActions.loadAccounts({filter: {searchTerm:'', itemsOnPage: 20, pageNumber: 1}}));
+    this.fetchAccounts({searchTerm:'', itemsOnPage: 20, pageNumber: 1})
+  }
+
+  onQueryChange(filter: AccountFilter) {
+    this.fetchAccounts(filter);
+  }
+
+  fetchAccounts(filter: AccountFilter) {
+    this.store.dispatch(AccountActions.loadAccounts({filter}));
   }
 
 }

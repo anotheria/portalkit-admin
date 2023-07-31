@@ -1,8 +1,22 @@
+<form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" formControlName="searchTerm" nz-input placeholder="input search text" />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <span nz-icon nzType="search"></span>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+
 <nz-table #basicTable [nzData]="accountList.content"
           nzPaginationPosition="both"
           nzShowSizeChanger="true"
           nzSize="small"
-          [nzFrontPagination]="false"
+          nzFrontPagination="false"
           [nzLoading]="loading"
           [nzTotal]="total"
           [nzPageSize]="pageSize"
