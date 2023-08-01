@@ -20,6 +20,7 @@ export interface PaginatedContent<T> {
   pageNumber: number;
   itemsOnPage: number;
   totalItems: number;
+  searchTerm?: string;
   content: Array<T>;
 }
 

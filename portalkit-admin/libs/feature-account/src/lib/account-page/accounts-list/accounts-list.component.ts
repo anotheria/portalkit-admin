@@ -21,8 +21,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
   validateForm!: UntypedFormGroup;
 
   submitForm(): void {
-    const searchTerm = this.validateForm.get('searchTerm')?.value || '';
-    this.queryChange.emit({ pageNumber: 1, itemsOnPage: this.pageSize, searchTerm });
+    this.queryChange.emit({ pageNumber: 1, itemsOnPage: this.pageSize, searchTerm: this.getCurrentSearchTerm() });
   }
 
   constructor(private fb: UntypedFormBuilder) {}
@@ -48,8 +47,12 @@ export class AccountsListComponent implements OnChanges, OnInit {
     const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
-    this.queryChange.emit({ pageNumber: pageIndex, itemsOnPage: pageSize, searchTerm: "" });
+    this.queryChange.emit({ pageNumber: pageIndex, itemsOnPage: pageSize, searchTerm: this.getCurrentSearchTerm() });
     this.loading = true;
+  }
+
+  getCurrentSearchTerm(): string {
+    return this.validateForm.get('searchTerm')?.value || '';
   }
 
 }
