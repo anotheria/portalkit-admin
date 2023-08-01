@@ -40,10 +40,10 @@ export class AccountApi extends BaseApi {
   }
 
   loadAccount(id: string): Observable<AccountDTO> {
-    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/mission/${id}`, { observe: 'body'}).pipe(
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account/${id}`, { observe: 'body'}).pipe(
       map((response) => {
         if(response.success) {
-          return response.results.account;
+          return response.results.data;
         } else {
           super.handleErrorResponse(response);
         }

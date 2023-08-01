@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AccountPageComponent} from "./account-page/account-page.component";
 import {LoginGuard} from "@portalkit-admin/core";
+import {AccountOverlayModule} from "./account-overlay/account-overlay.module";
 
 const routes: Routes = [
   {
@@ -11,7 +12,12 @@ const routes: Routes = [
       {
         path: 'accounts',
         component: AccountPageComponent
-      }
+      },
+      {
+        path: 'accounts',
+        outlet: 'overlay',
+        loadChildren: () => AccountOverlayModule,
+      },
     ]
   }
 ];

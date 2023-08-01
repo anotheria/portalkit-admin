@@ -9,10 +9,11 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [AccountsListComponent],
-  imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule, NzToolTipModule, NzButtonModule],
+    imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule, NzToolTipModule, NzButtonModule, RouterLink],
   exports: [
     AccountsListComponent
   ]

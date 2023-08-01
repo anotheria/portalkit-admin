@@ -6,3 +6,4 @@ export * from "./lib/home-page";
 export { BaseApi } from "./lib/base-api";
 export * from "./lib/common.types";
 export { LoginGuard } from "./lib/login-page/login-page-data/login.guard";
+export * from "./lib/modal-dialog";
