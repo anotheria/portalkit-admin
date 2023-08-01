@@ -7,10 +7,12 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {ReactiveFormsModule} from "@angular/forms";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 @NgModule({
   declarations: [AccountsListComponent],
-  imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule],
+  imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule, NzToolTipModule, NzButtonModule],
   exports: [
     AccountsListComponent
   ]
