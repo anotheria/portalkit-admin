@@ -66,3 +66,11 @@ export enum Status {
   BETA = 128,
   PHONE_NUMBER_CONFIRMED = 256,
 }
+export interface AccountStatus {
+  value: number;
+  name: string;
+}
+export interface AccountType {
+  value: number;
+  name: string;
+}

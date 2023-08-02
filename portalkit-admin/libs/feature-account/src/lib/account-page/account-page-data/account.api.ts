@@ -7,7 +7,7 @@ import {
   PaginatedContent,
   ApiPaginatedResponseDTO, initialPaginatedContent, ApiResponseDTO
 } from "@portalkit-admin/core";
-import {AccountDTO, AccountFilter, AccountFilterDTO, FilterRangeDTO} from "./account.types";
+import {AccountDTO, AccountFilter, AccountFilterDTO, AccountStatus, AccountType, FilterRangeDTO} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountApi extends BaseApi {
@@ -41,6 +41,30 @@ export class AccountApi extends BaseApi {
       map((response) => {
         if(response.success) {
           return response.results.data;
+        } else {
+          super.handleErrorResponse(response);
+        }
+      })
+    );
+  }
+
+  loadAccountStatuses(): Observable<Array<AccountStatus>> {
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account/statuses`, { observe: 'body'}).pipe(
+      map((response) => {
+        if(response.success) {
+          return response.results.success;
+        } else {
+          super.handleErrorResponse(response);
+        }
+      })
+    );
+  }
+
+  loadAccountTypes(): Observable<Array<AccountType>> {
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account/types`, { observe: 'body'}).pipe(
+      map((response) => {
+        if(response.success) {
+          return response.results.success;
         } else {
           super.handleErrorResponse(response);
         }

@@ -1,8 +1,10 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
 import { PaginatedContent } from "@portalkit-admin/core";
-import { Account, AccountFilter } from "../account-page-data/account.types";
+import {Account, AccountFilter, AccountStatus} from "../account-page-data/account.types";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import {UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import {CachedAccountTypesService} from "../account-page-data/cached-account-types.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: "pk-accounts-list",
@@ -19,6 +21,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
   total!: number;
 
   searchForm!: UntypedFormGroup;
+  statusesList$!: Observable<Array<AccountStatus>>;
 
   submitForm(): void {
     this.queryChange.emit({ pageIndex: 1,
@@ -28,12 +31,17 @@ export class AccountsListComponent implements OnChanges, OnInit {
     });
   }
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(private fb: UntypedFormBuilder,
+              private cachedAccountService: CachedAccountTypesService) {
+    this.statusesList$ = this.cachedAccountService.getAccountStatuses();
+  }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchTerm: [null],
       registrationRange: [[]],
+      includedStatuses: [[]],
+      excludedStatuses: [[]],
     });
   }
 

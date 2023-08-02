@@ -24,6 +24,10 @@ export interface PaginatedContent<T> {
   totalItems: number;
   searchTerm?: string;
   registrationRange?: Array<Data>;
+  sort?: {
+    direction: "DESC" | "ASC",
+    "field": "REGISTRATION_DATE"
+  };
   content: Array<T>;
 }
 

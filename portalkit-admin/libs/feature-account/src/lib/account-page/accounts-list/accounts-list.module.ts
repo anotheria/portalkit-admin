@@ -11,10 +11,11 @@ import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {RouterLink} from "@angular/router";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 @NgModule({
   declarations: [AccountsListComponent],
-  imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule, NzToolTipModule, NzButtonModule, RouterLink, NzDatePickerModule],
+  imports: [CommonModule, NzTableModule, NzDividerModule, NzFormModule, NzInputModule, NzIconModule, ReactiveFormsModule, NzToolTipModule, NzButtonModule, RouterLink, NzDatePickerModule, NzSelectModule],
   exports: [
     AccountsListComponent
   ]

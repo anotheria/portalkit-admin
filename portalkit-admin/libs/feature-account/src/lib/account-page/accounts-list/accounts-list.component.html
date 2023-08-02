@@ -11,65 +11,125 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-control>
-      <nz-range-picker [nzShowTime]="true" formControlName="registrationRange"></nz-range-picker>
+      <nz-range-picker formControlName="registrationRange"></nz-range-picker>
     </nz-form-control>
   </nz-form-item>
-    <nz-form-item>
-      <nz-form-control>
-        <button nz-button nzType="primary" [disabled]="!searchForm.valid">Submit</button>
-      </nz-form-control>
-    </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-select nzMode="multiple"
+                 nzAllowClear
+                 nzServerSearch
+                 formControlName="includedStatuses" nzPlaceHolder="Included statuses">
+        <ng-container *ngFor="let o of (statusesList$ | async)">
+          <nz-option [nzValue]="o.name" [nzLabel]="o.name"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-select nzMode="multiple"
+                 nzAllowClear
+                 nzServerSearch
+                 formControlName="excludedStatuses" nzPlaceHolder="Excluded statuses">
+        <ng-container *ngFor="let o of (statusesList$ | async)">
+          <nz-option [nzValue]="o.name" [nzLabel]="o.name"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary" [disabled]="!searchForm.valid">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
 </form>
 
 <ng-template #rangeTemplate let-range="range" let-total>
   {{ range[0] }}-{{ range[1] }} of {{ total }} items
 </ng-template>
 
-<nz-table #basicTable [nzData]="accountList.content"
-          nzPaginationPosition="both"
-          nzShowSizeChanger="true"
-          nzSize="small"
-          [nzShowTotal]="rangeTemplate"
-          nzFrontPagination="false"
-          [nzLoading]="loading"
-          [nzTotal]="total"
-          [nzPageSize]="pageSize"
-          [nzPageIndex]="pageIndex"
-          (nzQueryParams)="onQueryParamsChange($event)">
+<nz-table
+  #basicTable
+  [nzData]="accountList.content"
+  nzPaginationPosition="both"
+  nzShowSizeChanger="true"
+  nzSize="small"
+  [nzShowTotal]="rangeTemplate"
+  nzFrontPagination="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
   <thead>
-  <tr>
-    <th>Account Id</th>
-    <th>email</th>
-    <th>Name</th>
-    <th>Status</th>
-    <th>Registered</th>
-    <th>Action</th>
-  </tr>
+    <tr>
+      <th>Account Id</th>
+      <th>email</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Registered</th>
+      <th>Action</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of basicTable.data">
-    <td>{{ data.accountId.internalId }}</td>
-    <td>{{ data.email }}</td>
-    <td>{{ data.name }}</td>
-    <td>{{ data.status }}</td>
-    <td>{{ data.registrationTimestamp | date: 'yyyy-MM-dd hh:mm:ss' }}</td>
-    <td>
-      <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Edit" nzTooltipPlacement="top" nz-tooltip
-              [routerLink]="['/', { outlets: { overlay: ['accounts', data.accountId.internalId, 'edit'] } }]"
-      ><span nz-icon nzType="edit" nzTheme="outline"></span></button>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.accountId.internalId }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.status }}</td>
+      <td>{{ data.registrationTimestamp | date : "yyyy-MM-dd hh:mm:ss" }}</td>
+      <td>
+        <button
+          nz-button
+          nzType="link"
+          nzSize="small"
+          nzTooltipTitle="Edit"
+          nzTooltipPlacement="top"
+          nz-tooltip
+          [routerLink]="['/', { outlets: { overlay: ['accounts', data.accountId.internalId, 'edit'] } }]"
+        >
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
 
-      <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Sign-in as" nzTooltipPlacement="top" nz-tooltip
-      ><span nz-icon nzType="login" nzTheme="outline"></span></button>
+        <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Sign-in as" nzTooltipPlacement="top" nz-tooltip>
+          <span nz-icon nzType="login" nzTheme="outline"></span>
+        </button>
 
-      <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Set password" nzTooltipPlacement="top" nz-tooltip
-      ><span nz-icon nzType="lock" nzTheme="outline"></span></button>
+        <button
+          nz-button
+          nzType="link"
+          nzSize="small"
+          nzTooltipTitle="Set password"
+          nzTooltipPlacement="top"
+          nz-tooltip
+        >
+          <span nz-icon nzType="lock" nzTheme="outline"></span>
+        </button>
 
-      <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Password recovery" nzTooltipPlacement="top" nz-tooltip
-      ><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
+        <button
+          nz-button
+          nzType="link"
+          nzSize="small"
+          nzTooltipTitle="Password recovery"
+          nzTooltipPlacement="top"
+          nz-tooltip
+        >
+          <span nz-icon nzType="rollback" nzTheme="outline"></span>
+        </button>
 
-      <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Welcome email" nzTooltipPlacement="top" nz-tooltip
-      ><span nz-icon nzType="mail" nzTheme="outline"></span></button>
-    </td>
-  </tr>
+        <button
+          nz-button
+          nzType="link"
+          nzSize="small"
+          nzTooltipTitle="Welcome email"
+          nzTooltipPlacement="top"
+          nz-tooltip
+        >
+          <span nz-icon nzType="mail" nzTheme="outline"></span>
+        </button>
+      </td>
+    </tr>
   </tbody>
 </nz-table>
