@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import { PaginatedContent } from "@portalkit-admin/core";
 import { Account, AccountFilter } from "../account-page-data/account.types";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 
 @Component({
   selector: "pk-accounts-list",
@@ -18,17 +18,22 @@ export class AccountsListComponent implements OnChanges, OnInit {
   pageIndex!: number;
   total!: number;
 
-  validateForm!: UntypedFormGroup;
+  searchForm!: UntypedFormGroup;
 
   submitForm(): void {
-    this.queryChange.emit({ pageNumber: 1, itemsOnPage: this.pageSize, searchTerm: this.getCurrentSearchTerm() });
+    this.queryChange.emit({ pageIndex: 1,
+      itemsOnPage: this.pageSize,
+      searchTerm: this.getCurrentSearchTerm(),
+      registrationRange: this.getCurrentRange()
+    });
   }
 
   constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
+    this.searchForm = this.fb.group({
       searchTerm: [null],
+      registrationRange: [[]],
     });
   }
 
@@ -37,6 +42,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
+      this.searchForm.get('registrationRange')?.patchValue(this.accountList.registrationRange)
       this.loading = false;
     }
   }
@@ -47,12 +53,18 @@ export class AccountsListComponent implements OnChanges, OnInit {
     const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
-    this.queryChange.emit({ pageNumber: pageIndex, itemsOnPage: pageSize, searchTerm: this.getCurrentSearchTerm() });
+    this.queryChange.emit({ pageIndex: pageIndex, itemsOnPage: pageSize,
+      searchTerm: this.getCurrentSearchTerm(),
+      registrationRange: this.getCurrentRange()
+    });
     this.loading = true;
   }
 
   getCurrentSearchTerm(): string {
-    return this.validateForm.get('searchTerm')?.value || '';
+    return this.searchForm.get('searchTerm')?.value || '';
+  }
+  getCurrentRange(): [] {
+    return this.searchForm.get('registrationRange')?.value || [];
   }
 
 }

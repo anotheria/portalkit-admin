@@ -7,7 +7,7 @@ import {
   PaginatedContent,
   ApiPaginatedResponseDTO, initialPaginatedContent, ApiResponseDTO
 } from "@portalkit-admin/core";
-import { AccountDTO, AccountFilter} from "./account.types";
+import {AccountDTO, AccountFilter, AccountFilterDTO, FilterRangeDTO} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountApi extends BaseApi {
@@ -22,11 +22,8 @@ export class AccountApi extends BaseApi {
     this.basePath = this.configService.appConfig.apiEndpointUrl;
   }
 
-  loadAccounts(filter: AccountFilter): Observable<PaginatedContent<AccountDTO>> {
-    const params = new HttpParams({
-      fromObject: {...filter},
-    });
-    return this.httpClient.get<ApiPaginatedResponseDTO<AccountDTO>>(`${this.basePath}/admin-api/account`, {params}).pipe(
+  loadAccounts(filter: AccountFilterDTO): Observable<PaginatedContent<AccountDTO>> {
+    return this.httpClient.post<ApiPaginatedResponseDTO<AccountDTO>>(`${this.basePath}/admin-api/account/list`, {...filter}).pipe(
       map((response) => {
         if (response.success) {
           return response.results.data;

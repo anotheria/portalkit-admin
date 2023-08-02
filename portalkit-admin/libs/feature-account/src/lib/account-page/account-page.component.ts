@@ -21,7 +21,10 @@ export class AccountPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchAccounts({searchTerm:'', itemsOnPage: 20, pageNumber: 1})
+    const from = new Date(new Date().getFullYear(), 0, 1);
+    const to = new Date(new Date().getFullYear(), 11, 31);
+
+    this.fetchAccounts({searchTerm:'', itemsOnPage: 20, pageIndex: 1, registrationRange:[from, to]})
   }
 
   onQueryChange(filter: AccountFilter) {

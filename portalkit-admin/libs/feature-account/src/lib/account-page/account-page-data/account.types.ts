@@ -25,8 +25,25 @@ export interface Account {
 
 export interface AccountFilter {
   searchTerm: string;
-  pageNumber: number;
+  pageIndex: number;
   itemsOnPage: number;
+  registrationRange: Date[];
+  includedStatuses?: string[];
+  excludedStatuses?: string[];
+}
+
+export interface AccountFilterDTO {
+  searchTerm: string;
+  pageIndex: number;
+  itemsOnPage: number;
+  registrationRange: FilterRangeDTO;
+  includedStatuses?: string[];
+  excludedStatuses?: string[];
+}
+
+export interface FilterRangeDTO {
+  from: number;
+  to: number;
 }
 
 export interface AccountId {

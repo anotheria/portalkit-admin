@@ -10,12 +10,15 @@ export class AccountService {
   constructor(private readonly accountApi: AccountApi, private readonly accountSerializer: AccountSerializer) {}
 
   loadAccounts(filter: AccountFilter): Observable<PaginatedContent<Account>> {
-    return this.accountApi.loadAccounts(filter).pipe(
+    return this.accountApi.loadAccounts(this.accountSerializer.serializeFilter(filter)).pipe(
       map((paginatedContent) => {
-        paginatedContent.content = this.accountSerializer.deserializeAccounts(
-          paginatedContent.content as Array<AccountDTO>,
-        );
-        return paginatedContent;
+        return {
+          ...paginatedContent,
+          content: this.accountSerializer.deserializeAccounts(
+            paginatedContent.content as Array<AccountDTO>,
+          ),
+          registrationRange: filter.registrationRange
+        }
       }),
     );
   }

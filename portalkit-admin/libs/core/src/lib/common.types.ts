@@ -1,3 +1,5 @@
+import {Data} from "@angular/router";
+
 export interface ApiResponseDTO {
   success: boolean;
   message: string;
@@ -21,6 +23,7 @@ export interface PaginatedContent<T> {
   itemsOnPage: number;
   totalItems: number;
   searchTerm?: string;
+  registrationRange?: Array<Data>;
   content: Array<T>;
 }
 
