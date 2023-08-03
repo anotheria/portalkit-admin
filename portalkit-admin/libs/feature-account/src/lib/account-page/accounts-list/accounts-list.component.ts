@@ -42,7 +42,9 @@ export class AccountsListComponent implements OnChanges, OnInit {
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
-      this.searchForm.get('registrationRange')?.patchValue(this.accountList.registrationRange)
+      this.searchForm.get('registrationRange')?.patchValue(this.accountList.registrationRange);
+      this.searchForm.get('includedStatuses')?.patchValue(this.accountList.includedStatuses);
+      this.searchForm.get('excludedStatuses')?.patchValue(this.accountList.excludedStatuses);
       this.loading = false;
     }
   }
@@ -59,7 +61,9 @@ export class AccountsListComponent implements OnChanges, OnInit {
       pageIndex: pageIndex,
       itemsOnPage: pageSize,
       searchTerm: this.getCurrentSearchTerm(),
-      registrationRange: this.getCurrentRange()
+      registrationRange: this.getCurrentRange(),
+      includedStatuses: this.getIncludedStatuses(),
+      excludedStatuses: this.getExcludedStatuses()
     });
     this.loading = true;
   }
@@ -69,7 +73,9 @@ export class AccountsListComponent implements OnChanges, OnInit {
       pageIndex: 1,
       itemsOnPage: this.pageSize,
       searchTerm: this.getCurrentSearchTerm(),
-      registrationRange: this.getCurrentRange()
+      registrationRange: this.getCurrentRange(),
+      includedStatuses: this.getIncludedStatuses(),
+      excludedStatuses: this.getExcludedStatuses()
     });
   }
 
@@ -78,6 +84,12 @@ export class AccountsListComponent implements OnChanges, OnInit {
   }
   getCurrentRange(): [] {
     return this.searchForm.get('registrationRange')?.value || [];
+  }
+  getIncludedStatuses(): Array<string> {
+    return this.searchForm.get('includedStatuses')?.value || [];
+  }
+  getExcludedStatuses(): Array<string> {
+    return this.searchForm.get('excludedStatuses')?.value || [];
   }
 
 }

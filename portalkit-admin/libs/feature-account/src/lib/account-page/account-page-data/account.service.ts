@@ -18,6 +18,8 @@ export class AccountService {
             paginatedContent.content as Array<AccountDTO>,
           ),
           registrationRange: filter.registrationRange,
+          includedStatuses: filter.includedStatuses,
+          excludedStatuses: filter.excludedStatuses,
           pageNumber: paginatedContent.pageNumber + 1,
         }
       }),
