@@ -24,6 +24,7 @@ export class AccountSerializer {
   serializeFilter(filter: AccountFilter): AccountFilterDTO {
     return {
       ...filter,
+      pageIndex: filter.pageIndex - 1,
       registrationRange: {
         from: filter.registrationRange[0].getTime(),
         to: filter.registrationRange[1].getTime()

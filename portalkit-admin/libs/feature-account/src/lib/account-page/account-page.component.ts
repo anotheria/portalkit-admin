@@ -21,10 +21,7 @@ export class AccountPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    const from = new Date(new Date().getFullYear(), 0, 1);
-    const to = new Date(new Date().getFullYear(), 11, 31);
-
-    this.fetchAccounts({searchTerm:'', itemsOnPage: 20, pageIndex: 1, registrationRange:[from, to]})
+    this.fetchAccounts(this.getDefaultQueryParams())
   }
 
   onQueryChange(filter: AccountFilter) {
@@ -33,6 +30,17 @@ export class AccountPageComponent implements OnInit {
 
   fetchAccounts(filter: AccountFilter) {
     this.store.dispatch(AccountActions.loadAccounts({filter}));
+  }
+
+  getDefaultQueryParams() {
+    const from = new Date(new Date().getFullYear(), 0, 1);
+    const to = new Date(new Date().getFullYear(), 11, 31);
+
+    return {
+      pageIndex: 1,
+      itemsOnPage: 20,
+      searchTerm:'',
+      registrationRange:[from, to]};
   }
 
 }

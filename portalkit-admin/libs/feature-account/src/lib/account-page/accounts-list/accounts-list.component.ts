@@ -23,14 +23,6 @@ export class AccountsListComponent implements OnChanges, OnInit {
   searchForm!: UntypedFormGroup;
   statusesList$!: Observable<Array<AccountStatus>>;
 
-  submitForm(): void {
-    this.queryChange.emit({ pageIndex: 1,
-      itemsOnPage: this.pageSize,
-      searchTerm: this.getCurrentSearchTerm(),
-      registrationRange: this.getCurrentRange()
-    });
-  }
-
   constructor(private fb: UntypedFormBuilder,
               private cachedAccountService: CachedAccountTypesService) {
     this.statusesList$ = this.cachedAccountService.getAccountStatuses();
@@ -46,7 +38,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes["accountList"] && this.accountList.pageNumber) {
+    if (changes["accountList"]) {
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
@@ -58,14 +50,27 @@ export class AccountsListComponent implements OnChanges, OnInit {
   onQueryParamsChange(params: NzTableQueryParams): void {
     if(this.loading) return;
     const { pageSize, pageIndex, sort, filter } = params;
+
     const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
-    this.queryChange.emit({ pageIndex: pageIndex, itemsOnPage: pageSize,
+
+    this.queryChange.emit({
+      pageIndex: pageIndex,
+      itemsOnPage: pageSize,
       searchTerm: this.getCurrentSearchTerm(),
       registrationRange: this.getCurrentRange()
     });
     this.loading = true;
+  }
+
+  submitFilterForm(): void {
+    this.queryChange.emit({
+      pageIndex: 1,
+      itemsOnPage: this.pageSize,
+      searchTerm: this.getCurrentSearchTerm(),
+      registrationRange: this.getCurrentRange()
+    });
   }
 
   getCurrentSearchTerm(): string {

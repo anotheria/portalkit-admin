@@ -17,7 +17,8 @@ export class AccountService {
           content: this.accountSerializer.deserializeAccounts(
             paginatedContent.content as Array<AccountDTO>,
           ),
-          registrationRange: filter.registrationRange
+          registrationRange: filter.registrationRange,
+          pageNumber: paginatedContent.pageNumber + 1,
         }
       }),
     );
