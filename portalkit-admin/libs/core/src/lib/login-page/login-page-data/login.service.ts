@@ -20,7 +20,10 @@ export class LoginService {
 
   public login(loginRequest: LoginRequest): Observable<LoginData> {
     return this.loginApi.doLogin(loginRequest.login, loginRequest.password).pipe(
-      map((dto: LoginDataDTO) => this.loginSerializer.deserializeLoginData(dto)),
+      map((dto: LoginDataDTO) => this.loginSerializer.deserializeLoginData({
+        ...dto,
+        login: loginRequest.login
+      })),
       tap((loginData)  => this.setToken(loginData.token)),
       catchError(this.handleError));
   }
