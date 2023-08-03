@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
 import { PaginatedContent } from "@portalkit-admin/core";
-import {Account, AccountFilter, AccountStatus} from "../account-page-data/account.types";
+import { Account, AccountFilter, AccountStatus } from "../account-page-data/account.types";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
-import {UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
-import {CachedAccountTypesService} from "../account-page-data/cached-account-types.service";
-import {Observable} from "rxjs";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { CachedAccountTypesService } from "../account-page-data/cached-account-types.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "pk-accounts-list",
@@ -23,8 +23,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
   searchForm!: UntypedFormGroup;
   statusesList$!: Observable<Array<AccountStatus>>;
 
-  constructor(private fb: UntypedFormBuilder,
-              private cachedAccountService: CachedAccountTypesService) {
+  constructor(private fb: UntypedFormBuilder, private cachedAccountService: CachedAccountTypesService) {
     this.statusesList$ = this.cachedAccountService.getAccountStatuses();
   }
 
@@ -42,15 +41,15 @@ export class AccountsListComponent implements OnChanges, OnInit {
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
-      this.searchForm.get('registrationRange')?.patchValue(this.accountList.registrationRange);
-      this.searchForm.get('includedStatuses')?.patchValue(this.accountList.includedStatuses);
-      this.searchForm.get('excludedStatuses')?.patchValue(this.accountList.excludedStatuses);
+      this.getRange()?.patchValue(this.accountList.registrationRange);
+      this.getIncludedStatuses()?.patchValue(this.accountList.includedStatuses);
+      this.getExcludedStatuses()?.patchValue(this.accountList.excludedStatuses);
       this.loading = false;
     }
   }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
-    if(this.loading) return;
+    if (this.loading) return;
     const { pageSize, pageIndex, sort, filter } = params;
 
     const currentSort = sort.find((item) => item.value !== null);
@@ -60,10 +59,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
     this.queryChange.emit({
       pageIndex: pageIndex,
       itemsOnPage: pageSize,
-      searchTerm: this.getCurrentSearchTerm(),
-      registrationRange: this.getCurrentRange(),
-      includedStatuses: this.getIncludedStatuses(),
-      excludedStatuses: this.getExcludedStatuses()
+      ...this.getFilterFormValues(),
     });
     this.loading = true;
   }
@@ -72,24 +68,29 @@ export class AccountsListComponent implements OnChanges, OnInit {
     this.queryChange.emit({
       pageIndex: 1,
       itemsOnPage: this.pageSize,
-      searchTerm: this.getCurrentSearchTerm(),
-      registrationRange: this.getCurrentRange(),
-      includedStatuses: this.getIncludedStatuses(),
-      excludedStatuses: this.getExcludedStatuses()
+      ...this.getFilterFormValues(),
     });
   }
 
-  getCurrentSearchTerm(): string {
-    return this.searchForm.get('searchTerm')?.value || '';
-  }
-  getCurrentRange(): [] {
-    return this.searchForm.get('registrationRange')?.value || [];
-  }
-  getIncludedStatuses(): Array<string> {
-    return this.searchForm.get('includedStatuses')?.value || [];
-  }
-  getExcludedStatuses(): Array<string> {
-    return this.searchForm.get('excludedStatuses')?.value || [];
+  getFilterFormValues() {
+    return {
+      searchTerm: this.getSearchTerm()?.value || "",
+      registrationRange: this.getRange()?.value || [],
+      includedStatuses: this.getIncludedStatuses()?.value || [],
+      excludedStatuses: this.getExcludedStatuses()?.value || [],
+    };
   }
 
+  getSearchTerm() {
+    return this.searchForm.get("searchTerm");
+  }
+  getRange() {
+    return this.searchForm.get("registrationRange");
+  }
+  getIncludedStatuses() {
+    return this.searchForm.get("includedStatuses");
+  }
+  getExcludedStatuses() {
+    return this.searchForm.get("excludedStatuses");
+  }
 }
