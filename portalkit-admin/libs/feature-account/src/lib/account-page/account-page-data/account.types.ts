@@ -28,6 +28,10 @@ export interface AccountFilter {
   pageIndex: number;
   itemsOnPage: number;
   registrationRange: Date[];
+  sort?: {
+    direction: 'ASC' | 'DESC';
+    field: string;
+  },
   includedStatuses?: string[];
   excludedStatuses?: string[];
 }

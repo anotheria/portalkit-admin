@@ -66,10 +66,10 @@
   <thead>
     <tr>
       <th>Account Id</th>
-      <th>email</th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Registered</th>
+      <th nzColumnKey="EMAIL" [nzSortFn]="true">email</th>
+      <th nzColumnKey="NAME" [nzSortFn]="true">Name</th>
+      <th nzColumnKey="STATUS" [nzSortFn]="true">Status</th>
+      <th nzColumnKey="REGISTRATION_DATE" [nzSortFn]="true">Registered</th>
       <th>Action</th>
     </tr>
   </thead>

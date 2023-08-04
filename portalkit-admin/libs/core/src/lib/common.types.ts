@@ -28,7 +28,7 @@ export interface PaginatedContent<T> {
   excludedStatuses?: string[];
   sort?: {
     direction: "DESC" | "ASC",
-    "field": "REGISTRATION_DATE"
+    "field": string
   };
   content: Array<T>;
 }
