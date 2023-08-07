@@ -75,7 +75,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.accountId.internalId }}</td>
+      <td>
+        <a [routerLink]="['/', { outlets: { overlay: ['accounts', data.accountId.internalId, 'edit'] } }]"
+        >{{ data.accountId.internalId }}</a></td>
       <td>{{ data.email }}</td>
       <td>{{ data.name }}</td>
       <td><span *ngFor="let s of data.statuses" nz-tooltip [nzTooltipTitle]="s.toString()">{{s.toString()[0]}}</span></td>

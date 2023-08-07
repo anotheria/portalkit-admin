@@ -21,7 +21,7 @@ export class CachedAccountTypesService {
     return this.cachedAccountStatuses$;
   }
 
-  getNonTechCompetences(): Observable<Array<AccountType>> {
+  getAccountTypes(): Observable<Array<AccountType>> {
     if (!this.cachedAccountTypes$) {
       this.cachedAccountTypes$ = this.accountService.loadAccountTypes().pipe(
         shareReplay(1)

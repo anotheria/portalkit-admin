@@ -1,5 +1,5 @@
 import {Component, Inject} from "@angular/core";
-import {NZ_MODAL_DATA} from "ng-zorro-antd/modal";
+import {NZ_MODAL_DATA, NzModalRef} from "ng-zorro-antd/modal";
 import {Account} from "../../account-page/account-page-data/account.types";
 
 @Component({
@@ -8,20 +8,21 @@ import {Account} from "../../account-page/account-page-data/account.types";
   styleUrls: ["./account-edit.component.scss"],
 })
 export class AccountEditComponent {
-  isVisible = true;
   account: Account;
 
-  constructor(@Inject(NZ_MODAL_DATA) public modalData: any) {
+  constructor(@Inject(NZ_MODAL_DATA) public modalData: any, private modal: NzModalRef) {
     this.account = this.modalData['account'];
   }
 
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+  onSave(): void {
+    console.log('Save clicked!');
   }
 
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+  onLoginAsUser(): void {
+    console.log('Login as user clicked!');
+  }
+
+  onCancel(): void {
+    this.modal.close();
   }
 }

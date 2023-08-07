@@ -2,4 +2,10 @@
   Edit account
 </ng-container>
 
-<p>Account id: {{account.accountId.internalId}}</p>
+<pk-account-form [account]="account"></pk-account-form>
+
+<ng-container *nzModalFooter>
+  <button nz-button nzType="default" (click)="onCancel()">Cancel</button>
+  <button nz-button nzType="default" (click)="onLoginAsUser()">Login as user</button>
+  <button nz-button nzType="primary" (click)="onSave()">Save</button>
+</ng-container>

@@ -1,1 +1,34 @@
-<p>account-form works!</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Not valid E-mail!">
+            <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">Statuses</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select nzMode="multiple"
+                       nzAllowClear
+                       nzServerSearch
+                       formControlName="statuses" nzPlaceHolder="Statuses">
+                <ng-container *ngFor="let o of (statusOptions$ | async)">
+                    <nz-option [nzValue]="o.name" [nzLabel]="o.name"></nz-option>
+                </ng-container>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24">Type</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select formControlName="type">
+                <ng-container *ngFor="let o of (typeOptions$ | async)">
+                    <nz-option [nzValue]="o.name" [nzLabel]="o.name"></nz-option>
+                </ng-container>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+</form>
