@@ -6,8 +6,8 @@ export interface AccountDTO {
   registrationTimestamp: number;
   randomUID: number;
   numericType: number;
-  type: Type;
-  statuses: Array<Status>;
+  type: string;
+  statuses: Array<string>;
   status: number;
 }
 export interface Account {
@@ -18,8 +18,8 @@ export interface Account {
   registrationTimestamp: number;
   randomUID: number;
   numericType: number;
-  type: Type;
-  statuses: Array<Status>;
+  type: string;
+  statuses: Array<string>;
   status: number;
 }
 
@@ -54,22 +54,6 @@ export interface AccountId {
   internalId: string;
 }
 
-export enum Type {
-  USER = 0,
-  DEFAULT_USER = 1,
-}
-
-export enum Status {
-  REGISTERED = 1,
-  CONFIRMED = 2,
-  ONCE_CONFIRMED = 4,
-  PREMIUM = 8,
-  MARKED_FOR_DELETION = 16,
-  CORPORATE_ACCOUNT = 32,
-  SUB_ACCOUNT = 64,
-  BETA = 128,
-  PHONE_NUMBER_CONFIRMED = 256,
-}
 export interface AccountStatus {
   value: number;
   name: string;
@@ -77,4 +61,13 @@ export interface AccountStatus {
 export interface AccountType {
   value: number;
   name: string;
+}
+
+export interface AccountUpdate {
+  id: string;
+  email?: string;
+  name?: string;
+  brand?: string;
+  type?: string;
+  tenant?: string;
 }

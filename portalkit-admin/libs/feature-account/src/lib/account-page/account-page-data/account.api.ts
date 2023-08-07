@@ -1,5 +1,5 @@
 import { Injectable, Injector } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { catchError, map, Observable } from "rxjs";
 import {
   BaseApi,
@@ -10,12 +10,10 @@ import {
   ApiResponseDTO,
 } from "@portalkit-admin/core";
 import {
-  AccountDTO,
-  AccountFilter,
-  AccountFilterDTO,
-  AccountStatus,
-  AccountType,
-  FilterRangeDTO,
+    AccountDTO,
+    AccountFilterDTO,
+    AccountStatus,
+    AccountType, AccountUpdate,
 } from "./account.types";
 
 @Injectable({ providedIn: "root" })
@@ -83,7 +81,7 @@ export class AccountApi extends BaseApi {
     );
   }
 
-  updateAccount(account: Partial<AccountDTO>): Observable<AccountDTO> {
+  updateAccount(account: AccountUpdate): Observable<AccountDTO> {
     return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/account`, account).pipe(
       map((response) => {
         if (response.success) {
@@ -94,4 +92,17 @@ export class AccountApi extends BaseApi {
       }),
     );
   }
+
+    signInAs(accountId: string): Observable<string> {
+        return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account/sign-as/${accountId}`, { observe: "body" }).pipe(
+            map((response) => {
+                if (response.success) {
+                    return response.results.token;
+                } else {
+                    super.handleErrorResponse(response);
+                }
+            }),
+        );
+    }
+
 }

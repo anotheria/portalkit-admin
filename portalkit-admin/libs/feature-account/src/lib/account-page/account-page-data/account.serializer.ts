@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {Account, AccountDTO, AccountFilter, AccountFilterDTO, FilterRangeDTO} from "./account.types";
+import {Account, AccountDTO, AccountFilter, AccountFilterDTO, AccountUpdate, FilterRangeDTO} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountSerializer {
@@ -21,9 +21,12 @@ export class AccountSerializer {
     ]
   }
 
-  serializeAccount(account: Account): AccountDTO {
+  serializeAccountUpdateRequest(account: Partial<Account>): AccountUpdate {
     return {
-      ...account,
+      id: account.accountId?.internalId as string,
+      email: account.email,
+      name: account.name,
+      type: account.type,
     }
   }
 

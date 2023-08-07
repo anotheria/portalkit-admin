@@ -5,6 +5,7 @@ import { AccountFormComponent } from "../account-form/account-form.component";
 import { Store } from "@ngrx/store";
 import { accountsFeature, AccountsState } from "../../account-page/account-page-data/store/account.reducer";
 import {AccountActions} from "../../account-page/account-page-data/store/account.actions";
+import {AccountService} from "../../account-page/account-page-data/account.service";
 
 @Component({
   selector: "pk-account-edit",
@@ -20,18 +21,23 @@ export class AccountEditComponent {
     @Inject(NZ_MODAL_DATA) public modalData: any,
     private modal: NzModalRef,
     private readonly store: Store<{ [accountsFeature]: AccountsState }>,
+    private readonly accountService: AccountService
   ) {
     this.account = this.modalData["account"];
   }
 
   onSave(): void {
     if (this.form.validate()) {
-      this.store.dispatch(AccountActions.updateAccount({account: this.form.getValue()}))
+      const account = {
+        ...this.form.getValue(),
+        accountId: {internalId: this.form.getValue().accountId || ''}
+      } as Account;
+      this.store.dispatch(AccountActions.updateAccount({account}))
     }
   }
 
-  onLoginAsUser(): void {
-    console.log("Login as user clicked!");
+  onSignInAs(): void {
+    this.accountService.signInAs(this.account.accountId.internalId);
   }
 
   onCancel(): void {

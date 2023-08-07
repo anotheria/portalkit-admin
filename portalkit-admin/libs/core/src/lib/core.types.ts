@@ -1,4 +1,5 @@
 export interface AppConfig {
-  apiEndpointUrl: string
+  apiEndpointUrl: string;
+  loginByTokenUrl: string;
   translations: { [key: string]: { [key: string]: string } };
 }

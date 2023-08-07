@@ -5,6 +5,7 @@ import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { CachedAccountTypesService } from "../account-page-data/cached-account-types.service";
 import { Observable } from "rxjs";
+import {AccountService} from "../account-page-data/account.service";
 
 @Component({
   selector: "pk-accounts-list",
@@ -23,7 +24,8 @@ export class AccountsListComponent implements OnChanges, OnInit {
   searchForm!: UntypedFormGroup;
   statusesList$!: Observable<Array<AccountStatus>>;
 
-  constructor(private fb: UntypedFormBuilder, private cachedAccountService: CachedAccountTypesService) {
+  constructor(private fb: UntypedFormBuilder, private cachedAccountService: CachedAccountTypesService,
+              private accountService: AccountService) {
     this.statusesList$ = this.cachedAccountService.getAccountStatuses();
   }
 
@@ -107,5 +109,9 @@ export class AccountsListComponent implements OnChanges, OnInit {
   }
   getExcludedStatuses() {
     return this.searchForm.get("excludedStatuses");
+  }
+
+  onSignInAs(accountId: string) {
+    this.accountService.signInAs(accountId);
   }
 }

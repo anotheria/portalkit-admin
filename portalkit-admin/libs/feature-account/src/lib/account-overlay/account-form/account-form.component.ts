@@ -23,7 +23,7 @@ export class AccountFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      id: [this.account.accountId.internalId],
+      accountId: [this.account.accountId.internalId],
       email: [this.account.email, [Validators.email, Validators.required]],
       statuses: [this.account.statuses, []],
       type: [this.account.type, []],

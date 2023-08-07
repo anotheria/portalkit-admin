@@ -95,7 +95,8 @@
           <span nz-icon nzType="edit" nzTheme="outline"></span>
         </button>
 
-        <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Sign-in as" nzTooltipPlacement="top" nz-tooltip>
+        <button nz-button nzType="link" nzSize="small" nzTooltipTitle="Sign-in as" nzTooltipPlacement="top" nz-tooltip
+          (click)="onSignInAs(data.accountId.internalId)">
           <span nz-icon nzType="login" nzTheme="outline"></span>
         </button>
 

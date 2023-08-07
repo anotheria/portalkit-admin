@@ -1,3 +1,4 @@
 {
-  "apiEndpointUrl": "http://35.247.113.244:8089/api/v1"
+  "apiEndpointUrl": "http://35.247.113.244:8089/api/v1",
+  "loginByTokenUrl": "https://www.patber.anotheria-services.net/login?token="
 }

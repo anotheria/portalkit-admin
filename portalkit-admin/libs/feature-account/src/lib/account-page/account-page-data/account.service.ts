@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { AccountApi } from "./account.api";
 import { map, Observable } from "rxjs";
-import { PaginatedContent } from "@portalkit-admin/core";
+import {ConfigService, PaginatedContent} from "@portalkit-admin/core";
 import { AccountSerializer } from "./account.serializer";
 import {Account, AccountDTO, AccountFilter, AccountStatus, AccountType} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
-  constructor(private readonly accountApi: AccountApi, private readonly accountSerializer: AccountSerializer) {}
+  constructor(private readonly accountApi: AccountApi, private readonly accountSerializer: AccountSerializer,
+              private readonly configService: ConfigService) {}
 
   loadAccounts(filter: AccountFilter): Observable<PaginatedContent<Account>> {
     return this.accountApi.loadAccounts(this.accountSerializer.serializeFilter(filter)).pipe(
@@ -34,14 +35,22 @@ export class AccountService {
 
   updateAccount(account: Partial<Account>): Observable<Account> {
     return this.accountApi
-        .updateAccount(account)
+        .updateAccount(this.accountSerializer.serializeAccountUpdateRequest(account))
         .pipe(map((dto) => this.accountSerializer.deserializeAccount(dto)));
   }
 
   loadAccountStatuses(): Observable<Array<AccountStatus>> {
     return this.accountApi.loadAccountStatuses();
   }
+
   loadAccountTypes(): Observable<Array<AccountType>> {
     return this.accountApi.loadAccountTypes();
   }
+
+  signInAs(accountId: string): void {
+    this.accountApi.signInAs(accountId).subscribe((token) =>
+      window.open(this.configService.appConfig.loginByTokenUrl + token, '_blank')
+    );
+  }
+
 }

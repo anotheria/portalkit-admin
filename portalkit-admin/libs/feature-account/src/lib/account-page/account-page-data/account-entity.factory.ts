@@ -12,7 +12,7 @@ export class AccountEntityFactory {
       status: 0,
       registrationTimestamp: 0,
       statuses: [],
-      type: 0,
+      type: '',
       numericType: 0,
       randomUID: 0
     }
