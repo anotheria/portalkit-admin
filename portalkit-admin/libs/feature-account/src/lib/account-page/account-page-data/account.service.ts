@@ -32,6 +32,12 @@ export class AccountService {
       .pipe(map((dto) => this.accountSerializer.deserializeAccount(dto)));
   }
 
+  updateAccount(account: Partial<Account>): Observable<Account> {
+    return this.accountApi
+        .updateAccount(account)
+        .pipe(map((dto) => this.accountSerializer.deserializeAccount(dto)));
+  }
+
   loadAccountStatuses(): Observable<Array<AccountStatus>> {
     return this.accountApi.loadAccountStatuses();
   }

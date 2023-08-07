@@ -21,6 +21,12 @@ export class AccountSerializer {
     ]
   }
 
+  serializeAccount(account: Account): AccountDTO {
+    return {
+      ...account,
+    }
+  }
+
   serializeFilter(filter: AccountFilter): AccountFilterDTO {
     return {
       ...filter,

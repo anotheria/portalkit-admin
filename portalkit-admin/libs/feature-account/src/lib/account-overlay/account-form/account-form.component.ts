@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {Account, AccountStatus, AccountType} from "../../account-page/account-page-data/account.types";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
@@ -11,7 +11,6 @@ import {CachedAccountTypesService} from "../../account-page/account-page-data/ca
 })
 export class AccountFormComponent implements OnInit {
   @Input() account!: Account;
-  @Output() update = new EventEmitter<Partial<Account>>();
 
   statusOptions$!: Observable<Array<AccountStatus>>;
   typeOptions$!: Observable<Array<AccountType>>;
@@ -24,15 +23,20 @@ export class AccountFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
+      id: [this.account.accountId.internalId],
       email: [this.account.email, [Validators.email, Validators.required]],
       statuses: [this.account.statuses, []],
       type: [this.account.type, []],
     });
   }
 
-  submitForm(): void {
+  getValue(): Partial<Account> {
+    return this.validateForm.value;
+  }
+
+  validate(): boolean {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      return true;
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -40,6 +44,7 @@ export class AccountFormComponent implements OnInit {
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
+      return false;
     }
   }
 

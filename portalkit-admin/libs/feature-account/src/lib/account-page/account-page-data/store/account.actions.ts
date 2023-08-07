@@ -10,4 +10,8 @@ export const AccountActions = {
   loadAccount: createAction("[Accounts] Load account", props<{ id: string }>()),
   loadAccountSuccess: createAction("[Accounts][Success] Load account", props<{ entity: Account }>()),
   loadAccountError: createAction("[Accounts][Error] Load account", props<{ error: unknown }>()),
+
+  updateAccount: createAction("[Accounts] Update account", props<{ account: Partial<Account> }>()),
+  updateAccountSuccess: createAction("[Accounts][Success] Update account", props<{ entity: Account }>()),
+  updateAccountError: createAction("[Accounts][Error] Update account", props<{ error: unknown }>()),
 };

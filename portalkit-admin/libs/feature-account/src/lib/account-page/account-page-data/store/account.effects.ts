@@ -32,4 +32,16 @@ export class AccountEffects {
       ),
     );
   });
+
+  updateAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(AccountActions.updateAccount),
+        switchMap(({account}) =>
+            this.accountService.updateAccount(account).pipe(
+                map((entity) => AccountActions.updateAccountSuccess({ entity })),
+                catchError((error) => of(AccountActions.updateAccountError({ error }))),
+            ),
+        ),
+    );
+  });
 }

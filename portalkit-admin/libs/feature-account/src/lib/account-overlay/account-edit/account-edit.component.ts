@@ -1,6 +1,10 @@
-import {Component, Inject} from "@angular/core";
-import {NZ_MODAL_DATA, NzModalRef} from "ng-zorro-antd/modal";
-import {Account} from "../../account-page/account-page-data/account.types";
+import { Component, Inject, ViewChild } from "@angular/core";
+import { NZ_MODAL_DATA, NzModalRef } from "ng-zorro-antd/modal";
+import { Account } from "../../account-page/account-page-data/account.types";
+import { AccountFormComponent } from "../account-form/account-form.component";
+import { Store } from "@ngrx/store";
+import { accountsFeature, AccountsState } from "../../account-page/account-page-data/store/account.reducer";
+import {AccountActions} from "../../account-page/account-page-data/store/account.actions";
 
 @Component({
   selector: "pk-account-edit",
@@ -10,16 +14,24 @@ import {Account} from "../../account-page/account-page-data/account.types";
 export class AccountEditComponent {
   account: Account;
 
-  constructor(@Inject(NZ_MODAL_DATA) public modalData: any, private modal: NzModalRef) {
-    this.account = this.modalData['account'];
+  @ViewChild(AccountFormComponent) form!: AccountFormComponent;
+
+  constructor(
+    @Inject(NZ_MODAL_DATA) public modalData: any,
+    private modal: NzModalRef,
+    private readonly store: Store<{ [accountsFeature]: AccountsState }>,
+  ) {
+    this.account = this.modalData["account"];
   }
 
   onSave(): void {
-    console.log('Save clicked!');
+    if (this.form.validate()) {
+      this.store.dispatch(AccountActions.updateAccount({account: this.form.getValue()}))
+    }
   }
 
   onLoginAsUser(): void {
-    console.log('Login as user clicked!');
+    console.log("Login as user clicked!");
   }
 
   onCancel(): void {
