@@ -105,4 +105,17 @@ export class AccountApi extends BaseApi {
         );
     }
 
+    updatePassword(accountId: string, password: string): Observable<boolean> {
+        return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/account/password`, {accountId, password}).pipe(
+            map((response) => {
+                if (response.success) {
+                    return true;
+                } else {
+                  super.handleErrorResponse(response)
+                  return false;
+                }
+            }),
+        );
+    }
+
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AccountEntityResolver } from "../account-page/account-page-data/account-entity-resolver.service";
 import { AccountEditComponent } from "./account-edit/account-edit.component";
 import { OpenDialogComponent } from "@portalkit-admin/core";
+import {AccountPasswordDialogComponent} from "./account-password-dialog/account-password-dialog.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,13 @@ const routes: Routes = [
         component: OpenDialogComponent,
         data: {
           component: AccountEditComponent,
+        },
+      },
+      {
+        path: "set-password",
+        component: OpenDialogComponent,
+        data: {
+          component: AccountPasswordDialogComponent,
         },
       },
     ],

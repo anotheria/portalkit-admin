@@ -53,4 +53,8 @@ export class AccountService {
     );
   }
 
+  updatePassword(accountId: string, password: string): Observable<boolean> {
+    return this.accountApi.updatePassword(accountId, password);
+  }
+
 }

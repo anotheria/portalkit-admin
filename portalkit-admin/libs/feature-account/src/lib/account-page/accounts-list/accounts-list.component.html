@@ -107,6 +107,7 @@
           nzTooltipTitle="Set password"
           nzTooltipPlacement="top"
           nz-tooltip
+          [routerLink]="['/', { outlets: { overlay: ['accounts', data.accountId.internalId, 'set-password'] } }]"
         >
           <span nz-icon nzType="lock" nzTheme="outline"></span>
         </button>
