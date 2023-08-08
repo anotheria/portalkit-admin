@@ -22,6 +22,7 @@ import * as AllIcons from "@ant-design/icons-angular/icons";
 import { NZ_ICONS } from "ng-zorro-antd/icon";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { en_US, NZ_I18N } from "ng-zorro-antd/i18n";
+import {NzNotificationServiceModule} from "ng-zorro-antd/notification";
 
 registerLocaleData(en);
 
@@ -38,6 +39,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
     CoreRoutingModule,
     HomePageModule,
     LoginPageModule,
+    NzNotificationServiceModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {
         provide: MissingTranslationHandler,

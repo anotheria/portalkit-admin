@@ -3,7 +3,7 @@ import { NZ_MODAL_DATA, NzModalRef } from "ng-zorro-antd/modal";
 import { Account } from "../../account-page/account-page-data/account.types";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import {AccountService} from "../../account-page/account-page-data/account.service";
-import {NotificationsSnackService} from "@portalkit-admin/core";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: "pk-account-password-dialog",
@@ -16,7 +16,7 @@ export class AccountPasswordDialogComponent implements OnInit {
 
   constructor(@Inject(NZ_MODAL_DATA) public modalData: any, private modal: NzModalRef, private fb: UntypedFormBuilder,
               private accountService: AccountService,
-              private notificationsSnackService: NotificationsSnackService) {
+              private notificationService: NzNotificationService) {
     this.account = this.modalData["account"];
   }
 
@@ -36,7 +36,8 @@ export class AccountPasswordDialogComponent implements OnInit {
       this.accountService.updatePassword(formValue.accountId, formValue.password)
         .subscribe((success) => {
           if (success) {
-            this.notificationsSnackService.openSuccessSnack('Password updated');
+            this.notificationService.success('','Password updated');
+            this.modal.close();
           }
         });
     } else {
