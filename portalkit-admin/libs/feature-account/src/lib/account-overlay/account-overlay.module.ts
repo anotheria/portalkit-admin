@@ -7,6 +7,7 @@ import { OpenDialogModule } from "@portalkit-admin/core";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { AccountFormModule } from "./account-form/account-form.module";
 import { AccountPasswordDialogModule } from "./account-password-dialog/account-password-dialog.module";
+import {AccountDataSpaceDialogModule} from "./account-dataspace-dialog/account-data-space-dialog.module";
 
 @NgModule({
   declarations: [AccountEditComponent],
@@ -15,6 +16,7 @@ import { AccountPasswordDialogModule } from "./account-password-dialog/account-p
     AccountOverlayRoutingModule,
     AccountFormModule,
     AccountPasswordDialogModule,
+    AccountDataSpaceDialogModule,
     NzModalModule,
     OpenDialogModule,
     NzButtonModule,

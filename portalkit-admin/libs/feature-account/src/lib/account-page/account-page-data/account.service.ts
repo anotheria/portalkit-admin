@@ -3,7 +3,7 @@ import { AccountApi } from "./account.api";
 import { map, Observable } from "rxjs";
 import {ConfigService, PaginatedContent} from "@portalkit-admin/core";
 import { AccountSerializer } from "./account.serializer";
-import {Account, AccountDTO, AccountFilter, AccountStatus, AccountType} from "./account.types";
+import {Account, AccountDataSpace, AccountDTO, AccountFilter, AccountStatus, AccountType} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
@@ -55,6 +55,12 @@ export class AccountService {
 
   updatePassword(accountId: string, password: string): Observable<boolean> {
     return this.accountApi.updatePassword(accountId, password);
+  }
+
+  loadAccountDataSpace(id: string): Observable<AccountDataSpace> {
+    return this.accountApi
+      .loadAccountDataSpace(id)
+      .pipe(map((dto) => this.accountSerializer.deserializeAccountDataSpace(dto)));
   }
 
 }

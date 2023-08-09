@@ -1,6 +1,6 @@
 import { Injectable, Injector } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { catchError, map, Observable } from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
 import {
   BaseApi,
   ConfigService,
@@ -10,10 +10,11 @@ import {
   ApiResponseDTO,
 } from "@portalkit-admin/core";
 import {
-    AccountDTO,
-    AccountFilterDTO,
-    AccountStatus,
-    AccountType, AccountUpdate,
+  AccountDataSpace, AccountDataSpaceDTO,
+  AccountDTO,
+  AccountFilterDTO,
+  AccountStatus,
+  AccountType, AccountUpdate,
 } from "./account.types";
 
 @Injectable({ providedIn: "root" })
@@ -117,5 +118,38 @@ export class AccountApi extends BaseApi {
             }),
         );
     }
+
+  loadAccountDataSpace(accountId: string): Observable<AccountDataSpaceDTO> {
+    const mock: AccountDataSpaceDTO = {
+      key: {
+        accountId: accountId,
+        dataspaceId: 0
+      },
+      attributes: {
+        Attr01: {
+          name: 'Attr01 param01',
+          valueAsString: '100',
+          type: 'LONG'
+        },
+        Attr02: {
+          name: 'Attr02 param02',
+          valueAsString: '200',
+          type: 'LONG'
+        }
+      }
+    }
+
+    return of(mock);
+    /*
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/${accountId}`, { observe: "body" }).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.results.data;
+        } else {
+          super.handleErrorResponse(response);
+        }
+      }),
+    );*/
+  }
 
 }

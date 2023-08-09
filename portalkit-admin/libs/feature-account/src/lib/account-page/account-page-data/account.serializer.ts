@@ -1,5 +1,13 @@
 import { Injectable } from "@angular/core";
-import {Account, AccountDTO, AccountFilter, AccountFilterDTO, AccountUpdate, FilterRangeDTO} from "./account.types";
+import {
+  Account, AccountDataSpace,
+  AccountDataSpaceDTO,
+  AccountDTO,
+  AccountFilter,
+  AccountFilterDTO,
+  AccountUpdate,
+  FilterRangeDTO
+} from "./account.types";
 
 @Injectable({ providedIn: "root" })
 export class AccountSerializer {
@@ -39,5 +47,11 @@ export class AccountSerializer {
         to: filter.registrationRange[1].getTime()
       }
     }
+  }
+
+  deserializeAccountDataSpace(dto: AccountDataSpaceDTO): AccountDataSpace {
+    return {
+      ...dto,
+    };
   }
 }

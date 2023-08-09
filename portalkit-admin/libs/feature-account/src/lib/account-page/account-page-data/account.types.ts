@@ -29,9 +29,9 @@ export interface AccountFilter {
   itemsOnPage: number;
   registrationRange: Date[];
   sort?: {
-    direction: 'ASC' | 'DESC';
+    direction: "ASC" | "DESC";
     field: string;
-  },
+  };
   includedStatuses?: string[];
   excludedStatuses?: string[];
 }
@@ -70,4 +70,31 @@ export interface AccountUpdate {
   brand?: string;
   type?: string;
   tenant?: string;
+}
+
+export interface AccountDataSpace {
+  key: {
+    accountId: string;
+    dataspaceId: number;
+  };
+  attributes: {
+    [key: string]: {
+      name: string;
+      valueAsString: string;
+      type: string;
+    };
+  }
+}
+export interface AccountDataSpaceDTO {
+  key: {
+    accountId: string;
+    dataspaceId: number;
+  };
+  attributes: {
+    [key: string]: {
+      name: string;
+      valueAsString: string;
+      type: string;
+    };
+  }
 }
