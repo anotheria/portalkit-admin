@@ -33,4 +33,20 @@ export class LoginEffects {
       ));
   });
 
+  doLogout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(loginActions.logout),
+      concatMap(() => {
+          if (this.loginService.getToken()) {
+            return this.loginService.doLogout().pipe(
+              map(() => loginActions.logoutSuccess()),
+              catchError((error) => of(loginActions.logoutError({error})))
+            )
+          } else {
+            return of(loginActions.logoutError({error: {message: 'no token'}}));
+          }
+        }
+      ))
+  });
+
 }

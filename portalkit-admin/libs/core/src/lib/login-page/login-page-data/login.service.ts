@@ -43,9 +43,13 @@ export class LoginService {
   }
 
   public logout() {
-    this.setToken(null);
     this.store.dispatch(actions.logout());
+    this.setToken(null);
     this.router.navigate(['/login']);
+  }
+
+  public doLogout() {
+    return this.loginApi.doLogout();
   }
 
   public isAuthenticated() {

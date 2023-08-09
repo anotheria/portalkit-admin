@@ -9,3 +9,5 @@ export const getUserByToken = createAction("[Login] Get user by token", props<{ 
 export const getUserByTokenSuccess = createAction("[Login][Success] Get user by token", props<{ loginData: LoginData }>());
 
 export const logout = createAction("[Login] Logout");
+export const logoutSuccess = createAction("[Login][Success] Logout");
+export const logoutError = createAction("[Login][Error] Logout", props<{ error: any }>());

@@ -48,4 +48,16 @@ export class LoginApi extends BaseApi {
       );
   }
 
+  doLogout(): Observable<boolean> {
+    return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/auth/logout`, {})
+      .pipe(
+        map((response) => {
+          if (!response.success) {
+            super.handleErrorResponse(response);
+          }
+          return response.success;
+        }),
+      );
+  }
+
 }
