@@ -76,21 +76,26 @@ export interface AccountDataSpace {
   key: {
     accountId: string;
     dataspaceId: number;
-  };
-  attributes: Array<{
-    attrKey: string;
     name: string;
-    valueAsString: string;
-    type: string;
-  }>
+  };
+  attributes: Array<DataSpaceAttribute>;
+}
+export interface DataSpaceAttribute {
+  id?: string;
+  attrKey: string;
+  name: string;
+  valueAsString: string;
+  type: string;
 }
 export interface AccountDataSpaceDTO {
   key: {
     accountId: string;
     dataspaceId: number;
+    name: string;
   };
   attributes: {
     [key: string]: {
+      id?: string;
       name: string;
       valueAsString: string;
       type: string;

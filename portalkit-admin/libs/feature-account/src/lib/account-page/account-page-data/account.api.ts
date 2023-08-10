@@ -123,15 +123,18 @@ export class AccountApi extends BaseApi {
     const mock1: AccountDataSpaceDTO = {
       key: {
         accountId: accountId,
-        dataspaceId: 0
+        dataspaceId: 0,
+        name: 'PAYMENT'
       },
       attributes: {
         Attr01: {
+          id: '01',
           name: 'Attr01',
           valueAsString: '100',
           type: 'LONG'
         },
         Attr02: {
+          id: '02',
           name: 'Attr02',
           valueAsString: '200',
           type: 'LONG'
@@ -141,15 +144,18 @@ export class AccountApi extends BaseApi {
     const mock2: AccountDataSpaceDTO = {
       key: {
         accountId: accountId,
-        dataspaceId: 1
+        dataspaceId: 1,
+        name: 'TRACKING'
       },
       attributes: {
         Attr01: {
+          id: '01',
           name: 'DS2 attr01',
           valueAsString: '300',
           type: 'LONG'
         },
         Attr02: {
+          id: '02',
           name: 'DS2 attr02',
           valueAsString: '400',
           type: 'LONG'
@@ -168,6 +174,44 @@ export class AccountApi extends BaseApi {
         }
       }),
     );*/
+  }
+
+  addDataSpaceAttribute(accountId: string): Observable<boolean> {
+    const request = {
+      accountId,
+      dataspaceId: 0,
+      attributeName: "",
+      attributeValue: "",
+      type: ""
+    };
+    return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/add-attribute`, request).pipe(
+      map((response) => {
+        if (response.success) {
+          return true;
+        } else {
+          super.handleErrorResponse(response)
+          return false;
+        }
+      }),
+    );
+  }
+
+  removeDataSpaceAttribute(accountId: string, dataspaceId: number, attributeName: string): Observable<boolean> {
+    const request = {
+      accountId,
+      dataspaceId,
+      attributeName,
+    };
+    return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/remove-attribute`, request).pipe(
+      map((response) => {
+        if (response.success) {
+          return true;
+        } else {
+          super.handleErrorResponse(response)
+          return false;
+        }
+      }),
+    );
   }
 
 }

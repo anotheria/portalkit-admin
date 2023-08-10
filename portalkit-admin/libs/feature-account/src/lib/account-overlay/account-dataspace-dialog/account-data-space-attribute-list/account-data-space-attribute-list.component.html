@@ -1,1 +1,35 @@
-<p>account-data-space-attribute-list works!</p>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>
+
+<button nz-button (click)="addRow()" nzType="primary">Add</button>
+<br />
+<nz-table
+  nzSize="small"
+  nzShowPagination="false"
+  [nzShowTotal]="rangeTemplate"
+  #editRowTable nzBordered [nzData]="attributes">
+  <thead>
+  <tr>
+    <th nzWidth="30%">Name</th>
+    <th>Value</th>
+    <th>Type</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of editRowTable.data" class="editable-row">
+    <td>
+      <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id, editInput)">
+        {{ data.name }}
+      </div>
+      <input [hidden]="editId !== data.id" #editInput type="text" nz-input [(ngModel)]="data.name" (blur)="stopEdit()" />
+    </td>
+    <td>{{ data.valueAsString }}</td>
+    <td>{{ data.type }}</td>
+    <td>
+      <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

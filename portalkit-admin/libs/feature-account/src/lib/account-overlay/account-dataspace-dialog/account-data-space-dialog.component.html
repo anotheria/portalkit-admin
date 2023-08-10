@@ -1,13 +1,11 @@
 <ng-container *nzModalTitle>
-  Account data-space
+  Account data-spaces
 </ng-container>
 
-<div *ngFor="let dataSpace of dataSpaces">
-  DS id: {{dataSpace.key.dataspaceId}}
-  <p *ngFor="let attr of dataSpace.attributes">
-    {{attr.name}}: {{attr.valueAsString}} {{attr.type}}
-  </p>
-</div>
+<p *ngFor="let dataSpace of dataSpaces">
+  {{dataSpace.key.name}}<br/>
+  <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes"></pk-account-data-space-attribute-list>
+</p>
 
 <ng-container *nzModalFooter>
   <button nz-button nzType="default" (click)="onCancel()">Cancel</button>
