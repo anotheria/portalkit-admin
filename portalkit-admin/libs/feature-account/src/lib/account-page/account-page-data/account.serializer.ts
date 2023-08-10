@@ -49,9 +49,17 @@ export class AccountSerializer {
     }
   }
 
+  deserializeAccountDataSpaces(dtos: Array<AccountDataSpaceDTO>): Array<AccountDataSpace> {
+    return dtos.map((dto) => this.deserializeAccountDataSpace(dto));
+  }
+
   deserializeAccountDataSpace(dto: AccountDataSpaceDTO): AccountDataSpace {
     return {
       ...dto,
+      attributes: Object.keys(dto.attributes).map((attrKey) => ({
+        ...dto.attributes[attrKey],
+        attrKey
+      }))
     };
   }
 }

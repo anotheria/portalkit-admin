@@ -3,7 +3,7 @@ import { NZ_MODAL_DATA, NzModalRef } from "ng-zorro-antd/modal";
 import { UntypedFormBuilder } from "@angular/forms";
 import { AccountService } from "../../account-page/account-page-data/account.service";
 import { NzNotificationService } from "ng-zorro-antd/notification";
-import { Account } from "../../account-page/account-page-data/account.types";
+import {Account, AccountDataSpace} from "../../account-page/account-page-data/account.types";
 
 @Component({
   selector: "pk-account-data-space-dialog",
@@ -12,6 +12,7 @@ import { Account } from "../../account-page/account-page-data/account.types";
 })
 export class AccountDataSpaceDialogComponent {
   account: Account;
+  dataSpaces: Array<AccountDataSpace>;
 
   constructor(
     @Inject(NZ_MODAL_DATA) public modalData: any,
@@ -21,9 +22,12 @@ export class AccountDataSpaceDialogComponent {
     private notificationService: NzNotificationService,
   ) {
     this.account = this.modalData["account"];
+    this.dataSpaces = this.modalData["dataSpaces"];
   }
 
   onCancel(): void {
     this.modal.close();
   }
+
+  protected readonly Object = Object;
 }

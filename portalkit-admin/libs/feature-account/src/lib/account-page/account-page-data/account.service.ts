@@ -57,10 +57,10 @@ export class AccountService {
     return this.accountApi.updatePassword(accountId, password);
   }
 
-  loadAccountDataSpace(id: string): Observable<AccountDataSpace> {
+  loadAccountDataSpaces(id: string): Observable<Array<AccountDataSpace>> {
     return this.accountApi
-      .loadAccountDataSpace(id)
-      .pipe(map((dto) => this.accountSerializer.deserializeAccountDataSpace(dto)));
+      .loadAccountDataSpaces(id)
+      .pipe(map((dtos) => this.accountSerializer.deserializeAccountDataSpaces(dtos)));
   }
 
 }

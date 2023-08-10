@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { PaginatedContent } from "@portalkit-admin/core";
-import { Account, AccountFilter } from "../account.types";
+import {Account, AccountDataSpace, AccountFilter} from "../account.types";
 
 export const AccountActions = {
   loadAccounts: createAction("[Accounts] Load accounts", props<{ filter: AccountFilter }>()),
@@ -14,4 +14,8 @@ export const AccountActions = {
   updateAccount: createAction("[Accounts] Update account", props<{ account: Partial<Account> }>()),
   updateAccountSuccess: createAction("[Accounts][Success] Update account", props<{ entity: Account }>()),
   updateAccountError: createAction("[Accounts][Error] Update account", props<{ error: unknown }>()),
+
+  loadDataSpaces: createAction("[Accounts] Load data-spaces", props<{ id: string }>()),
+  loadDataSpacesSuccess: createAction("[Accounts][Success] Load data-spaces", props<{ data: Array<AccountDataSpace> }>()),
+  loadDataSpacesError: createAction("[Accounts][Error] Load data-spaces", props<{ error: unknown }>()),
 };

@@ -119,27 +119,45 @@ export class AccountApi extends BaseApi {
         );
     }
 
-  loadAccountDataSpace(accountId: string): Observable<AccountDataSpaceDTO> {
-    const mock: AccountDataSpaceDTO = {
+  loadAccountDataSpaces(accountId: string): Observable<Array<AccountDataSpaceDTO>> {
+    const mock1: AccountDataSpaceDTO = {
       key: {
         accountId: accountId,
         dataspaceId: 0
       },
       attributes: {
         Attr01: {
-          name: 'Attr01 param01',
+          name: 'Attr01',
           valueAsString: '100',
           type: 'LONG'
         },
         Attr02: {
-          name: 'Attr02 param02',
+          name: 'Attr02',
           valueAsString: '200',
           type: 'LONG'
         }
       }
     }
+    const mock2: AccountDataSpaceDTO = {
+      key: {
+        accountId: accountId,
+        dataspaceId: 1
+      },
+      attributes: {
+        Attr01: {
+          name: 'DS2 attr01',
+          valueAsString: '300',
+          type: 'LONG'
+        },
+        Attr02: {
+          name: 'DS2 attr02',
+          valueAsString: '400',
+          type: 'LONG'
+        }
+      }
+    }
 
-    return of(mock);
+    return of([mock1, mock2]);
     /*
     return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/${accountId}`, { observe: "body" }).pipe(
       map((response) => {

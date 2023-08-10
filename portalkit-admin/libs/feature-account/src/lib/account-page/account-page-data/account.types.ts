@@ -77,13 +77,12 @@ export interface AccountDataSpace {
     accountId: string;
     dataspaceId: number;
   };
-  attributes: {
-    [key: string]: {
-      name: string;
-      valueAsString: string;
-      type: string;
-    };
-  }
+  attributes: Array<{
+    attrKey: string;
+    name: string;
+    valueAsString: string;
+    type: string;
+  }>
 }
 export interface AccountDataSpaceDTO {
   key: {

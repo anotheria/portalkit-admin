@@ -2,7 +2,12 @@
   Account data-space
 </ng-container>
 
-Data-spaces list
+<div *ngFor="let dataSpace of dataSpaces">
+  DS id: {{dataSpace.key.dataspaceId}}
+  <p *ngFor="let attr of dataSpace.attributes">
+    {{attr.name}}: {{attr.valueAsString}} {{attr.type}}
+  </p>
+</div>
 
 <ng-container *nzModalFooter>
   <button nz-button nzType="default" (click)="onCancel()">Cancel</button>

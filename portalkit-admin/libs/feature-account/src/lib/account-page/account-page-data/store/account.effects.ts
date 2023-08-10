@@ -44,4 +44,16 @@ export class AccountEffects {
         ),
     );
   });
+
+  loadAccountDataSpace$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountActions.loadDataSpaces),
+      switchMap(({id}) =>
+        this.accountService.loadAccountDataSpaces(id).pipe(
+          map((data) => AccountActions.loadDataSpacesSuccess({ data })),
+          catchError((error) => of(AccountActions.loadDataSpacesError({ error }))),
+        ),
+      ),
+    );
+  });
 }

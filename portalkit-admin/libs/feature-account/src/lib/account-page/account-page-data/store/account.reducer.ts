@@ -1,4 +1,4 @@
-import {Account} from "../account.types";
+import {Account, AccountDataSpace} from "../account.types";
 import { combineReducers, createReducer, on } from '@ngrx/store';
 import {AccountActions} from "./account.actions";
 import {initialPaginatedContent, initialStatusState, PaginatedContent, StatusState} from "@portalkit-admin/core";
@@ -13,6 +13,11 @@ export type AccountsListState  = {
 export type AccountsEntityState  = {
   status: StatusState,
   entity: Account | null
+}
+
+export type AccountsDataSpaceState  = {
+  status: StatusState,
+  data: Array<AccountDataSpace> | null
 }
 
 export const AccountsListReducer = createReducer<AccountsListState>(
@@ -61,12 +66,37 @@ export const AccountsEntityReducer = createReducer<AccountsEntityState>(
   }),
   );
 
+export const AccountsDataSpaceReducer = createReducer<AccountsDataSpaceState>(
+  { status: initialStatusState, data: null },
+  on(AccountActions.loadDataSpaces, (state) => {
+    return {
+      ...state,
+      status: {loading: true, loaded: false, error: null}
+    }
+  }),
+  on(AccountActions.loadDataSpacesSuccess, (state, {data}) => {
+    return {
+      ...state,
+      status: {loading: false, loaded: true, error: null },
+      data
+    };
+  }),
+  on(AccountActions.loadDataSpacesError, (state, action) => {
+    return {
+      ...state,
+      status: {loading: false, loaded: false, error: action.error},
+    }
+  }),
+);
+
 export interface AccountsState {
   list: AccountsListState,
   entity: AccountsEntityState,
+  dataSpace: AccountsDataSpaceState,
 }
 
 export const AccountsReducer = combineReducers<AccountsState>({
   list: AccountsListReducer,
   entity: AccountsEntityReducer,
+  dataSpace: AccountsDataSpaceReducer,
 });
