@@ -2,10 +2,19 @@
   Account data-spaces
 </ng-container>
 
-<p *ngFor="let dataSpace of dataSpaces">
-  {{dataSpace.key.name}}<br/>
-  <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes"></pk-account-data-space-attribute-list>
-</p>
+<div *ngFor="let dataSpace of dataSpaces" class="cnt-data-space">
+  <h3 class="ds-header">
+    {{dataSpace.key.name}}
+    <button nz-button nzType="primary" nzSize="small" nzShape="circle"
+            nzTooltipTitle="Delete data-space"
+            nzTooltipPlacement="right"
+            nz-tooltip
+            nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDeleteDataSpace(dataSpace.key.dataspaceId)">
+      <span nz-icon nzType="delete" nzTheme="outline"></span></button>
+  </h3>
+
+  <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes" ></pk-account-data-space-attribute-list>
+</div>
 
 <ng-container *nzModalFooter>
   <button nz-button nzType="default" (click)="onCancel()">Cancel</button>

@@ -1,0 +1,10 @@
+.cnt-data-space {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .ds-header {
+    display: flex;
+    gap: 0.5em
+  }
+}

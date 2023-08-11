@@ -2,8 +2,6 @@
   {{ range[0] }}-{{ range[1] }} of {{ total }} items
 </ng-template>
 
-<button nz-button (click)="addRow()" nzType="primary">Add</button>
-<br />
 <nz-table
   nzSize="small"
   nzShowPagination="false"
@@ -14,7 +12,11 @@
     <th nzWidth="30%">Name</th>
     <th>Value</th>
     <th>Type</th>
-    <th>Action</th>
+    <th class="th-actions">Action <button nz-button nzType="primary" nzSize="small" nzShape="circle"
+                       nzTooltipTitle="Add attribute"
+                       nzTooltipPlacement="right"
+                       nz-tooltip
+                       (click)="addRow()"><span nz-icon nzType="plus"></span></button></th>
   </tr>
   </thead>
   <tbody>
@@ -28,7 +30,22 @@
     <td>{{ data.valueAsString }}</td>
     <td>{{ data.type }}</td>
     <td>
-      <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</a>
+      <button
+        nz-button
+        nzType="link"
+        nzSize="small"
+        nzTooltipTitle="Edit"
+        nzTooltipPlacement="top"
+        nz-tooltip
+      >
+        <span nz-icon nzType="edit" nzTheme="outline"></span>
+      </button>
+      <button nz-button nzType="link" nzSize="small"
+              nzTooltipTitle="Delete attribute"
+              nzTooltipPlacement="top"
+              nz-tooltip
+              nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">
+        <span nz-icon nzType="delete" nzTheme="outline"></span></button>
     </td>
   </tr>
   </tbody>

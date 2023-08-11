@@ -6,10 +6,12 @@ import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 
 @NgModule({
   declarations: [AccountDataSpaceAttributeListComponent],
-  imports: [CommonModule, FormsModule, NzPopconfirmModule, NzInputModule, NzTableModule, NzButtonModule],
+  imports: [CommonModule, FormsModule, NzPopconfirmModule, NzInputModule, NzTableModule, NzButtonModule, NzIconModule, NzToolTipModule],
   exports: [AccountDataSpaceAttributeListComponent]
 })
 export class AccountDataSpaceAttributeListModule {}

@@ -29,5 +29,9 @@ export class AccountDataSpaceDialogComponent {
     this.modal.close();
   }
 
+  onDeleteDataSpace(dataSpaceId: number) {
+    console.log('onDeleteDataSpace, id=' + dataSpaceId);
+  }
+
   protected readonly Object = Object;
 }
