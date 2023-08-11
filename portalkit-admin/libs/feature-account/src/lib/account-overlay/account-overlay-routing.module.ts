@@ -34,6 +34,7 @@ const routes: Routes = [
         component: OpenDialogComponent,
         data: {
           component: AccountDataSpaceDialogComponent,
+          width: 800
         },
         resolve: {
           dataSpaces: AccountDataSpacesResolver,

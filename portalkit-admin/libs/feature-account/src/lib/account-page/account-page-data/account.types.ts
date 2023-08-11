@@ -81,7 +81,7 @@ export interface AccountDataSpace {
   attributes: Array<DataSpaceAttribute>;
 }
 export interface DataSpaceAttribute {
-  id?: string;
+  id: string;
   attrKey: string;
   name: string;
   valueAsString: string;
@@ -95,7 +95,7 @@ export interface AccountDataSpaceDTO {
   };
   attributes: {
     [key: string]: {
-      id?: string;
+      id: string;
       name: string;
       valueAsString: string;
       type: string;

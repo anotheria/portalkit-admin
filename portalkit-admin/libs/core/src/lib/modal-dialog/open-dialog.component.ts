@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Data } from "@angular/router";
 import { NzModalRef, NzModalService } from "ng-zorro-antd/modal";
+import { ModalOptions } from "ng-zorro-antd/modal/modal-types";
 
 @Component({ template: "" })
 export class OpenDialogComponent implements OnInit {
@@ -11,7 +12,11 @@ export class OpenDialogComponent implements OnInit {
   }
 
   openDialog(data: Data): void {
-    const ref: NzModalRef = this.nzModalService.create({ nzContent: data["component"], nzData: data });
+    const options: ModalOptions = { nzContent: data["component"], nzData: data };
+    if (data["width"]) {
+      options.nzWidth = data["width"];
+    }
+    const ref: NzModalRef = this.nzModalService.create(options);
     ref.afterClose.subscribe(() => {
       this.cleanOverlaySegments();
     });

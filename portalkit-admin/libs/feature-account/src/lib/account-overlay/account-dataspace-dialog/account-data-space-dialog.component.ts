@@ -23,6 +23,7 @@ export class AccountDataSpaceDialogComponent {
   ) {
     this.account = this.modalData["account"];
     this.dataSpaces = this.modalData["dataSpaces"];
+    this.dataSpaces = JSON.parse(JSON.stringify(this.dataSpaces)); //deep clone, override immutable obj
   }
 
   onCancel(): void {
@@ -32,6 +33,4 @@ export class AccountDataSpaceDialogComponent {
   onDeleteDataSpace(dataSpaceId: number) {
     console.log('onDeleteDataSpace, id=' + dataSpaceId);
   }
-
-  protected readonly Object = Object;
 }

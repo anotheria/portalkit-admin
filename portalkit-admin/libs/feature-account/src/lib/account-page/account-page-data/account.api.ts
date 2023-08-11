@@ -150,15 +150,21 @@ export class AccountApi extends BaseApi {
       attributes: {
         Attr01: {
           id: '01',
-          name: 'DS2 attr01',
-          valueAsString: '300',
-          type: 'LONG'
+          name: 'tracker_url',
+          valueAsString: 'https://56.70.34.1/data/track',
+          type: 'STRING'
         },
         Attr02: {
           id: '02',
-          name: 'DS2 attr02',
-          valueAsString: '400',
-          type: 'LONG'
+          name: 'track_cookies',
+          valueAsString: 'true',
+          type: 'BOOLEAN'
+        },
+        Attr03: {
+          id: '03',
+          name: 'tracked_pages',
+          valueAsString: 'SHOPPING_CART, CHECKOUT',
+          type: 'CSV'
         }
       }
     }
