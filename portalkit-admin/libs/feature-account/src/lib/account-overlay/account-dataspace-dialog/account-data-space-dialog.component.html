@@ -10,7 +10,8 @@
             nzTooltipPlacement="right"
             nz-tooltip
             nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDeleteDataSpace(dataSpace.key.dataspaceId)">
-      <span nz-icon nzType="delete" nzTheme="outline"></span></button>
+      <span nz-icon nzType="delete" nzTheme="outline"></span>
+    </button>
   </h3>
 
   <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes" ></pk-account-data-space-attribute-list>
@@ -18,4 +19,7 @@
 
 <ng-container *nzModalFooter>
   <button nz-button nzType="default" (click)="onCancel()">Cancel</button>
+  <button nz-button nzType="primary"
+          (click)="onAddDataSpace()"><span nz-icon nzType="plus"></span> Add new data-space</button>
+
 </ng-container>

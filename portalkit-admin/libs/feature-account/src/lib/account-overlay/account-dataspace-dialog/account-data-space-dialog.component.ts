@@ -33,4 +33,17 @@ export class AccountDataSpaceDialogComponent {
   onDeleteDataSpace(dataSpaceId: number) {
     console.log('onDeleteDataSpace, id=' + dataSpaceId);
   }
+  onAddDataSpace() {
+    this.dataSpaces = [
+      ...this.dataSpaces,
+      {
+        key: {
+          accountId: this.account.accountId.internalId,
+          name: '',
+          dataspaceId: 2
+        },
+        attributes: [{id:'0', name: '', attrKey: '', valueAsString: '', type: ''}]
+      }
+    ];
+  }
 }
