@@ -11,7 +11,28 @@ const routes: Routes = [
     children: [
       {
         path: "accounts",
-        component: AccountPageComponent,
+        children: [
+          {
+            path: 'manage',
+            component: AccountPageComponent,
+          },
+          {
+            path: 'bulk-operations',
+            component: AccountPageComponent,
+          },
+          {
+            path: 'archive',
+            component: AccountPageComponent,
+          },
+          {
+            path: 'scam',
+            component: AccountPageComponent,
+          },
+          {
+            path: 'new-user',
+            component: AccountPageComponent,
+          },
+        ]
       },
       {
         path: "accounts",

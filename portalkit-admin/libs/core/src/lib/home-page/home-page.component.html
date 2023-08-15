@@ -1,11 +1,12 @@
 <nz-layout>
   <nz-sider nzCollapsible nzWidth="200px">
-    <div class="logo">TCL</div>
+    <div class="logo">P-Kit</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
 
-      <li *ngFor="let feature of features" nz-submenu [nzTitle]="feature.sideNavMenu.label" [nzIcon]="feature.sideNavMenu.icon">
+      <li *ngFor="let feature of features" nz-submenu
+          [nzTitle]="feature.sideNavMenu.label" [nzIcon]="feature.sideNavMenu.icon" [nzOpen]="activeFeature === feature.name">
         <ul>
-          <li *ngFor="let menuItem of feature.sideNavSubMenu" nz-menu-item>
+          <li *ngFor="let menuItem of feature.sideNavSubMenu" nz-menu-item [nzSelected]="activeSubMenuRoute === menuItem.routerLink">
             <a [routerLink]="menuItem.routerLink">
               <!--<span nz-icon nzType="poweroff"></span>-->
               <span>{{menuItem.label}}</span>

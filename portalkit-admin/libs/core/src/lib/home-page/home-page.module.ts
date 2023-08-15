@@ -9,23 +9,24 @@ import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzTypographyModule } from "ng-zorro-antd/typography";
 import { NzPageHeaderModule } from "ng-zorro-antd/page-header";
 import { NzButtonModule } from "ng-zorro-antd/button";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 
 @NgModule({
   declarations: [HomePageComponent],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    NzBreadCrumbModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzIconModule,
-    NzTypographyModule,
-    NzPageHeaderModule,
-    NzButtonModule,
-    RouterOutlet,
-    RouterLink,
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        NzBreadCrumbModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzIconModule,
+        NzTypographyModule,
+        NzPageHeaderModule,
+        NzButtonModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+    ],
   exports: [HomePageComponent],
 })
 export class HomePageModule {}

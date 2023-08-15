@@ -12,11 +12,11 @@ const featureAccountsDefinition: FeatureDefinition = {
     icon: 'team',
   },
   sideNavSubMenu: [
-    {label: 'Manage', routerLink: ['/accounts']},
-    {label: 'Bulk operations', routerLink: ['/accounts']},
-    {label: 'Archive', routerLink: ['/accounts']},
-    {label: 'Scam history', routerLink: ['/accounts']},
-    {label: 'User new', routerLink: ['/accounts']},
+    {label: 'Manage', routerLink: ['/accounts', 'manage']},
+    {label: 'Bulk operations', routerLink: ['/accounts', 'bulk-operations']},
+    {label: 'Archive', routerLink: ['/accounts', 'archive']},
+    {label: 'Scam history', routerLink: ['/accounts', 'scam']},
+    {label: 'User new', routerLink: ['/accounts', 'new-user']},
   ]
 }
 
