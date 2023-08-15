@@ -7,6 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzLayoutModule} from "ng-zorro-antd/layout";
 
 @NgModule({
   declarations: [LoginPageComponent],
@@ -18,6 +23,11 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule,
     TranslateModule,
     RouterLink,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzCardModule,
+    NzLayoutModule,
   ],
   exports: [LoginPageComponent]
 })

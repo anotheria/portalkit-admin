@@ -1,41 +1,27 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <span class="toolbar-spacer"></span>
-    <div class="logo-container on-page"></div>
-    <span class="toolbar-spacer"></span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<nz-layout>
+  <nz-content>
+    <nz-card nzTitle="Login">
+      <form nz-form [nzAutoTips]="autoTips" [formGroup]="formGroup" (ngSubmit)="onLoginFormSubmit()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>Login</nz-form-label>
+          <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="login" placeholder="login" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzDisableAutoTips nzErrorTip="Please input your password!">
+            <input nz-input type="password" formControlName="password" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary">Submit</button>
+          </nz-form-control>
+        </nz-form-item>
 
-<div class='login-container'>
-    <div class="login-form">
-      <form (ngSubmit)="onLoginFormSubmit()" [formGroup]="formGroup" novalidate>
-
-         <mat-form-field appearance="outline">
-              <mat-label>{{'loginpage.username.label' | translate}}</mat-label>
-              <input autocomplete="off" formControlName="login" matInput type="text" />
-              <mat-error *ngIf="login.errors?.['email'] && (login.dirty || login.touched)">
-                {{'validation.invalid' | translate}}
-              </mat-error>
-              <mat-error *ngIf="login.errors?.['required'] && (login.dirty || login.touched)">
-                {{'validation.required' | translate}}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>{{'loginpage.password.label' | translate}}</mat-label>
-              <input autocomplete="off" formControlName="password" matInput type="password" />
-              <mat-error *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
-                {{'validation.required' | translate}}
-              </mat-error>
-              <mat-error *ngIf="password.hasError('minlength') && (password.dirty || password.touched)">
-                {{'validation.invalid' | translate}}
-              </mat-error>
-            </mat-form-field>
-
-        <button mat-flat-button class='button-login'
-                type="submit">{{'loginpage.login.button' | translate}}</button>
-        <div *ngIf="errorResponse" class="custom-error">{{(errorResponse ?? 'toast.general.error') | translate }}</div>
+        <div role="alert" *ngIf="errorResponse" class="ant-form-item-explain-error">{{ errorResponse ?? "toast.general.error" | translate }}</div>
       </form>
-      <a mat-flat-button routerLink='/password-forgotten'>{{'loginpage.retrievepassword.link' | translate}}</a>
-  </div>
-</div>
+    </nz-card>
+  </nz-content>
+</nz-layout>

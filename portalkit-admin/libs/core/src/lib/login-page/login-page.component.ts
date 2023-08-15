@@ -18,6 +18,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public errorResponse: string | undefined | any = '';
   private readonly destroy$ = new Subject<void>();
 
+  autoTips: Record<string, Record<string, string>> = {
+    en: {
+      required: 'Input is required'
+    }
+  };
+
   constructor(
     private readonly loginService: LoginService,
     private readonly router: Router) {}
@@ -42,7 +48,15 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   public onLoginFormSubmit() {
-    if(this.formGroup.invalid) return;
+    if(this.formGroup.invalid) {
+      Object.values(this.formGroup.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+      return;
+    }
     this.loginService
       .login(this.formGroup.value)
       .pipe(
