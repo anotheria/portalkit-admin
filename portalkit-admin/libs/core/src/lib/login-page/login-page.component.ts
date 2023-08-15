@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {LoginService} from "./login-page-data/login.service";
 import {LoginData} from "./login-page-data/login.types";
 
-const DEFAULT_AUTHENTICATED_ROUTE = "/";
+const DEFAULT_AUTHENTICATED_ROUTE = "/accounts";
 
 @Component({
   selector: 'pk-login-page',
