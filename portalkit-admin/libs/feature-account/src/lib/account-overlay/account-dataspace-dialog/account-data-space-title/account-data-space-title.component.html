@@ -1,17 +1,17 @@
 <h3 class="ds-header">
   <ng-container *ngIf="!editTitle">
     {{dataSpace.key.name}}
-    <button nz-button nzType="primary" nzSize="small" nzShape="circle"
+    <button nz-button nzType="link" nzSize="small" nzShape="circle"
             nzTooltipTitle="Rename data-space"
-            nzTooltipPlacement="bottom"
+            nzTooltipPlacement="top"
             nz-tooltip
             (click)="editTitle = !editTitle">
       <span nz-icon nzType="edit" nzTheme="outline"></span>
     </button>
 
-    <button nz-button nzType="primary" nzSize="small" nzShape="circle"
+    <button nz-button nzType="link" nzSize="small" nzShape="circle"
             nzTooltipTitle="Delete data-space"
-            nzTooltipPlacement="right"
+            nzTooltipPlacement="top"
             nz-tooltip
             nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDeleteDataSpace(dataSpace.key.dataspaceId)">
       <span nz-icon nzType="delete" nzTheme="outline"></span>
