@@ -25,7 +25,8 @@ export class LoginService {
         login: loginRequest.login
       })),
       tap((loginData)  => this.setToken(loginData.token)),
-      catchError(this.handleError));
+      catchError((error) => throwError(()=>error))
+    );
   }
 
   public getLoginData(): Observable<LoginData> {
@@ -72,12 +73,6 @@ export class LoginService {
     if (token) {
       localStorage.setItem('token', token);
     }
-  }
-
-  private handleError(errorResponse: any): Observable<any> {
-    return throwError(() => {
-      return errorResponse.error.message || errorResponse.error.errorKey;
-    });
   }
 
 }

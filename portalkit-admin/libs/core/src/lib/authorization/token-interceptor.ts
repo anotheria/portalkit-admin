@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
       if (err.status === 401) {
         this.loginService.logout();
       }
-      const error = err.error.message || err.statusText;
+      const error = err.error.message ?? err.error.errorKey;
       return throwError(error);
     }));
   }
