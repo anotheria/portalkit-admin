@@ -35,6 +35,7 @@ export class AccountSerializer {
       email: account.email,
       name: account.name,
       type: account.type,
+      statuses: account.statuses,
     }
   }
 

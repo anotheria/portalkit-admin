@@ -70,6 +70,7 @@ export interface AccountUpdate {
   brand?: string;
   type?: string;
   tenant?: string;
+  statuses?: Array<string>;
 }
 
 export interface AccountDataSpace {
