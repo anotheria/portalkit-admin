@@ -6,6 +6,7 @@ import { Store } from "@ngrx/store";
 import { accountsFeature, AccountsState } from "../../account-page/account-page-data/store/account.reducer";
 import {AccountActions} from "../../account-page/account-page-data/store/account.actions";
 import {AccountService} from "../../account-page/account-page-data/account.service";
+import {filter, map, take} from "rxjs";
 
 @Component({
   selector: "pk-account-edit",
@@ -32,7 +33,16 @@ export class AccountEditComponent {
         ...this.form.getValue(),
         accountId: {internalId: this.form.getValue().accountId || ''}
       } as Account;
-      this.store.dispatch(AccountActions.updateAccount({account}))
+      this.store.dispatch(AccountActions.updateAccount({account}));
+
+      this.store
+        .select((state) => state[accountsFeature].entity)
+        .pipe(
+          filter((entity) => entity.status.loaded),
+          map((entity) => entity.entity),
+          take(1),
+        )
+        .subscribe((candidate) => this.modal.close());
     }
   }
 
