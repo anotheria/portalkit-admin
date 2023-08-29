@@ -38,6 +38,8 @@ export class AccountPasswordDialogComponent implements OnInit {
           if (success) {
             this.notificationService.success('','Password updated');
             this.modal.close();
+          } else {
+            this.notificationService.error('','Server error');
           }
         });
     } else {

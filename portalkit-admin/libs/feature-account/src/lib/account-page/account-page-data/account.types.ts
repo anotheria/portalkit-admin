@@ -63,6 +63,11 @@ export interface AccountType {
   name: string;
 }
 
+export interface ValueName {
+  value: number;
+  name: string;
+}
+
 export interface AccountUpdate {
   id: string;
   email?: string;

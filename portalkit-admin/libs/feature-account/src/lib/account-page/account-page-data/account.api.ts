@@ -14,7 +14,7 @@ import {
   AccountDTO,
   AccountFilterDTO,
   AccountStatus,
-  AccountType, AccountUpdate,
+  AccountType, AccountUpdate, ValueName,
 } from "./account.types";
 
 @Injectable({ providedIn: "root" })
@@ -75,6 +75,18 @@ export class AccountApi extends BaseApi {
       map((response) => {
         if (response.success) {
           return response.results.success;
+        } else {
+          super.handleErrorResponse(response);
+        }
+      }),
+    );
+  }
+
+  loadDataSpaceConfig(): Observable<Array<ValueName>> {
+    return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/config`, { observe: "body" }).pipe(
+      map((response) => {
+        if (response.success) {
+          return response.results.data;
         } else {
           super.handleErrorResponse(response);
         }

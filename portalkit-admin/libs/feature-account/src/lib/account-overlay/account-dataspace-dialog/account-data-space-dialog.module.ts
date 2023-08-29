@@ -12,24 +12,26 @@ import { NzPopconfirmModule } from "ng-zorro-antd/popconfirm";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountDataSpaceTitleComponent } from "./account-data-space-title/account-data-space-title.component";
+import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 
 @NgModule({
   declarations: [AccountDataSpaceDialogComponent, AccountDataSpaceTitleComponent],
-  imports: [
-    CommonModule,
-    AccountDataSpaceAttributeListModule,
-    NzModalModule,
-    NzButtonModule,
-    NzButtonModule,
-    NzSpaceModule,
-    NzPageHeaderModule,
-    NzIconModule,
-    NzToolTipModule,
-    NzPopconfirmModule,
-    NzInputModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        AccountDataSpaceAttributeListModule,
+        NzModalModule,
+        NzButtonModule,
+        NzButtonModule,
+        NzSpaceModule,
+        NzPageHeaderModule,
+        NzIconModule,
+        NzToolTipModule,
+        NzPopconfirmModule,
+        NzInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzDropDownModule,
+    ],
   exports: [AccountDataSpaceDialogComponent],
 })
 export class AccountDataSpaceDialogModule {}

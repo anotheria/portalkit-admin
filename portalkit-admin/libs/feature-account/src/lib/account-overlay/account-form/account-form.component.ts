@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Account, AccountStatus, AccountType} from "../../account-page/account-page-data/account.types";
+import {Account, AccountStatus, AccountType, ValueName} from "../../account-page/account-page-data/account.types";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {CachedAccountTypesService} from "../../account-page/account-page-data/cached-account-types.service";
