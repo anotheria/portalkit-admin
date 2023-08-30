@@ -1,6 +1,6 @@
 <h3 class="ds-header">
   <ng-container *ngIf="!editTitle">
-    {{dataSpace.key.name}}
+    {{dataSpace.name}}
     <button nz-button nzType="link" nzSize="small" nzShape="circle"
             nzTooltipTitle="Rename data-space"
             nzTooltipPlacement="top"
@@ -13,13 +13,13 @@
             nzTooltipTitle="Delete data-space"
             nzTooltipPlacement="top"
             nz-tooltip
-            nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDeleteDataSpace(dataSpace.key.dataspaceId)">
+            nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDeleteDataSpace(dataSpace.type)">
       <span nz-icon nzType="delete" nzTheme="outline"></span>
     </button>
   </ng-container>
 
   <ng-container *ngIf="editTitle">
-    <input type="text" nz-input [(ngModel)]="dataSpace.key.name" />
+    <input type="text" nz-input [(ngModel)]="dataSpace.name" />
     <button
       nz-button
       nzType="link"

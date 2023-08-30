@@ -1,6 +1,6 @@
 import { Injectable, Injector } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {catchError, map, Observable, of} from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import {
   BaseApi,
   ConfigService,
@@ -10,11 +10,14 @@ import {
   ApiResponseDTO,
 } from "@portalkit-admin/core";
 import {
-  AccountDataSpace, AccountDataSpaceDTO,
+  AccountDataSpace,
+  AccountDataSpaceDTO,
   AccountDTO,
   AccountFilterDTO,
   AccountStatus,
-  AccountType, AccountUpdate, ValueName,
+  AccountType,
+  AccountUpdate,
+  ValueName,
 } from "./account.types";
 
 @Injectable({ providedIn: "root" })
@@ -106,82 +109,169 @@ export class AccountApi extends BaseApi {
     );
   }
 
-    signInAs(accountId: string): Observable<string> {
-        return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/account/sign-as/${accountId}`, { observe: "body" }).pipe(
-            map((response) => {
-                if (response.success) {
-                    return response.results.token;
-                } else {
-                    super.handleErrorResponse(response);
-                }
-            }),
-        );
-    }
+  signInAs(accountId: string): Observable<string> {
+    return this.httpClient
+      .get<ApiResponseDTO>(`${this.basePath}/admin-api/account/sign-as/${accountId}`, { observe: "body" })
+      .pipe(
+        map((response) => {
+          if (response.success) {
+            return response.results.token;
+          } else {
+            super.handleErrorResponse(response);
+          }
+        }),
+      );
+  }
 
-    updatePassword(accountId: string, password: string): Observable<boolean> {
-        return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/account/password`, {accountId, password}).pipe(
-            map((response) => {
-                if (response.success) {
-                    return true;
-                } else {
-                  super.handleErrorResponse(response)
-                  return false;
-                }
-            }),
-        );
-    }
+  updatePassword(accountId: string, password: string): Observable<boolean> {
+    return this.httpClient
+      .post<ApiResponseDTO>(`${this.basePath}/admin-api/account/password`, { accountId, password })
+      .pipe(
+        map((response) => {
+          if (response.success) {
+            return true;
+          } else {
+            super.handleErrorResponse(response);
+            return false;
+          }
+        }),
+      );
+  }
 
   loadAccountDataSpaces(accountId: string): Observable<Array<AccountDataSpaceDTO>> {
-    const mock1: AccountDataSpaceDTO = {
-      key: {
-        accountId: accountId,
-        dataspaceId: 0,
-        name: 'PAYMENT'
+    const mockArray:Array<AccountDataSpaceDTO> = [
+      {
+        type: 2,
+        name: "LOCALIZATION",
+        accountId: {
+          internalId: accountId,
+        },
+        attributes: [
+          {
+            name: "profile_title",
+            value: "HUJ",
+            valueAsString: "HUJ",
+            type: "STRING",
+          },
+        ],
       },
-      attributes: {
-        Attr01: {
-          id: '01',
-          name: 'Attr01',
-          valueAsString: '100',
-          type: 'LONG'
+      {
+        type: 6,
+        name: "PUSH_NOTIFICATION_SETTINGS",
+        accountId: {
+          internalId: accountId,
         },
-        Attr02: {
-          id: '02',
-          name: 'Attr02',
-          valueAsString: '200',
-          type: 'LONG'
-        }
-      }
-    }
-    const mock2: AccountDataSpaceDTO = {
-      key: {
-        accountId: accountId,
-        dataspaceId: 1,
-        name: 'TRACKING'
+        attributes: [
+          {
+            name: "PUSH_NOTIFICATION_NEW_MESSAGE_SETTING",
+            value: true,
+            valueAsString: "true",
+            type: "BOOLEAN",
+          },
+          {
+            name: "PUSH_NOTIFICATION_CONNECTION_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+          {
+            name: "PUSH_NOTIFICATION_CASE_SHARED_SETTING",
+            value: true,
+            valueAsString: "true",
+            type: "BOOLEAN",
+          },
+          {
+            name: "PUSH_NOTIFICATION_FILE_FOLDER_SHARED_SETTING",
+            value: true,
+            valueAsString: "true",
+            type: "BOOLEAN",
+          },
+          {
+            name: "PUSH_NOTIFICATION_PHOTO_SHARED_SETTING",
+            value: true,
+            valueAsString: "true",
+            type: "BOOLEAN",
+          },
+        ],
       },
-      attributes: {
-        Attr01: {
-          id: '01',
-          name: 'tracker_url',
-          valueAsString: 'https://56.70.34.1/data/track',
-          type: 'STRING'
+      {
+        type: 7,
+        name: "MAIL_NOTIFICATION_SETTINGS",
+        accountId: {
+          internalId: accountId,
         },
-        Attr02: {
-          id: '02',
-          name: 'track_cookies',
-          valueAsString: 'true',
-          type: 'BOOLEAN'
+        attributes: [
+          {
+            name: "MAIL_NOTIFICATION_FILE_FOLDER_SHARED_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+          {
+            name: "MAIL_NOTIFICATION_NEW_MESSAGE_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+          {
+            name: "MAIL_NOTIFICATION_CASE_SHARED_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+          {
+            name: "MAIL_NOTIFICATION_CONNECTION_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+          {
+            name: "MAIL_NOTIFICATION_PHOTO_SHARED_SETTING",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+        ],
+      },
+      {
+        type: 8,
+        name: "RESHARING_SETTINGS",
+        accountId: {
+          internalId: accountId,
         },
-        Attr03: {
-          id: '03',
-          name: 'tracked_pages',
-          valueAsString: 'SHOPPING_CART, CHECKOUT',
-          type: 'CSV'
-        }
-      }
-    }
-
-    return of([mock1, mock2]);
+        attributes: [
+          {
+            name: "TEST_AAAA",
+            value: "value",
+            valueAsString: "value",
+            type: "STRING",
+          },
+        ],
+      },
+      {
+        type: 10,
+        name: "USER_GENERIC_SETTINGS",
+        accountId: {
+          internalId: accountId,
+        },
+        attributes: [
+          {
+            name: "TEST_ATTRIBUTE",
+            value: 10,
+            valueAsString: "10",
+            type: "INT",
+          },
+          {
+            name: "showTutorial",
+            value: false,
+            valueAsString: "false",
+            type: "BOOLEAN",
+          },
+        ],
+      },
+    ];
+    return of(mockArray);
+    //return of([mock1, mock2]);
     /*
     return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/${accountId}`, { observe: "body" }).pipe(
       map((response) => {
@@ -200,14 +290,14 @@ export class AccountApi extends BaseApi {
       dataspaceId: 0,
       attributeName: "",
       attributeValue: "",
-      type: ""
+      type: "",
     };
     return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/add-attribute`, request).pipe(
       map((response) => {
         if (response.success) {
           return true;
         } else {
-          super.handleErrorResponse(response)
+          super.handleErrorResponse(response);
           return false;
         }
       }),
@@ -225,11 +315,10 @@ export class AccountApi extends BaseApi {
         if (response.success) {
           return true;
         } else {
-          super.handleErrorResponse(response)
+          super.handleErrorResponse(response);
           return false;
         }
       }),
     );
   }
-
 }

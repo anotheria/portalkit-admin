@@ -10,21 +10,21 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
   @Input() attributes: DataSpaceAttribute[] = [];
 
   i = 0;
-  editCache: { [key: string]: { edit: boolean; data: DataSpaceAttribute } } = {};
+  editCache: { [key: number]: { edit: boolean; data: DataSpaceAttribute } } = {};
 
   ngOnInit() {
     this.updateEditCache();
   }
 
   addRow(): void {
-    const newId = `${this.i}`;
+    const newId = this.i;
     this.attributes = [
       ...this.attributes,
       {
         id: newId,
         name: ``,
         valueAsString: ``,
-        attrKey: '',
+        value: '',
         type: ''
       }
     ];
@@ -33,16 +33,16 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
     this.startEdit(newId);
   }
 
-  deleteRow(id: string | undefined): void {
+  deleteRow(id: number): void {
     this.attributes = this.attributes.filter(d => d.id !== id);
     this.updateEditCache();
   }
 
-  startEdit(id: string): void {
+  startEdit(id: number): void {
     this.editCache[id].edit = true;
   }
 
-  cancelEdit(id: string): void {
+  cancelEdit(id: number): void {
     const index = this.attributes.findIndex(item => item.id === id);
     this.editCache[id] = {
       data: { ...this.attributes[index] },
@@ -50,7 +50,7 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
     };
   }
 
-  saveEdit(id: string): void {
+  saveEdit(id: number): void {
     const index = this.attributes.findIndex(item => item.id === id);
     Object.assign(this.attributes[index], this.editCache[id].data);
     this.editCache[id].edit = false;
@@ -58,10 +58,11 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
 
   updateEditCache(): void {
     this.attributes.forEach(item => {
-      this.editCache[item.id as string] = {
+      this.editCache[item.id as number] = {
         edit: false,
         data: { ...item }
       };
     });
+    this.i = this.attributes[this.attributes.length -1].id;
   }
 }

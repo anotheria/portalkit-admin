@@ -39,12 +39,10 @@ export class AccountDataSpaceDialogComponent {
     this.dataSpaces = [
       ...this.dataSpaces,
       {
-        key: {
-          accountId: this.account.accountId.internalId,
-          name: dataSpace.name,
-          dataspaceId: 2
-        },
-        attributes: [{id:'0', name: '', attrKey: '', valueAsString: '', type: ''}]
+        accountId: this.account.accountId.internalId,
+        name: dataSpace.name,
+        type: dataSpace.value,
+        attributes: [{id:0, name: '', value: '', valueAsString: '', type: ''}]
       }
     ];
   }

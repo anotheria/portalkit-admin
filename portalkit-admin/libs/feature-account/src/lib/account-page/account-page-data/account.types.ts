@@ -79,32 +79,30 @@ export interface AccountUpdate {
 }
 
 export interface AccountDataSpace {
-  key: {
-    accountId: string;
-    dataspaceId: number;
-    name: string;
-  };
+  accountId: string;
+  type: number;
+  name: string;
   attributes: Array<DataSpaceAttribute>;
 }
-export interface DataSpaceAttribute {
-  id: string;
-  attrKey: string;
+
+export interface AccountDataSpaceDTO {
+  accountId: AccountId;
+  type: number;
   name: string;
+  attributes: Array<DataSpaceAttributeDTO>;
+}
+
+export interface DataSpaceAttributeDTO {
+  name: string;
+  value: unknown;
   valueAsString: string;
   type: string;
 }
-export interface AccountDataSpaceDTO {
-  key: {
-    accountId: string;
-    dataspaceId: number;
-    name: string;
-  };
-  attributes: {
-    [key: string]: {
-      id: string;
-      name: string;
-      valueAsString: string;
-      type: string;
-    };
-  }
+
+export interface DataSpaceAttribute {
+  id: number;
+  name: string;
+  value: unknown;
+  valueAsString: string;
+  type: string;
 }

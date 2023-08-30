@@ -5,7 +5,7 @@ import {
   AccountDTO,
   AccountFilter,
   AccountFilterDTO,
-  AccountUpdate,
+  AccountUpdate, DataSpaceAttribute, DataSpaceAttributeDTO,
   FilterRangeDTO
 } from "./account.types";
 
@@ -57,10 +57,14 @@ export class AccountSerializer {
   deserializeAccountDataSpace(dto: AccountDataSpaceDTO): AccountDataSpace {
     return {
       ...dto,
-      attributes: Object.keys(dto.attributes).map((attrKey) => ({
-        ...dto.attributes[attrKey],
-        attrKey
-      }))
+      accountId: dto.accountId.internalId,
+      attributes: dto.attributes.map((dto, index) => this.deserializeDataSpaceAttribute(dto, index))
     };
+  }
+  deserializeDataSpaceAttribute(dto: DataSpaceAttributeDTO, index: number): DataSpaceAttribute {
+    return {
+      id: index,
+      ...dto
+    }
   }
 }

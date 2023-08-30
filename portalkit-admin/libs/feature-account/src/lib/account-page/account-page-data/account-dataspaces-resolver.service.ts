@@ -22,7 +22,7 @@ export class AccountDataSpacesResolver implements Resolve<Array<AccountDataSpace
       .select((state) => state[accountsFeature].dataSpace.data)
       .pipe(
         tap((dataSpace) => {
-          if (!dataSpace || dataSpace[0].key.accountId !== id) {
+          if (!dataSpace || dataSpace[0].accountId !== id) {
             if (id) {
               this.store.dispatch(AccountActions.loadDataSpaces({ id }));
             } else {
@@ -30,7 +30,7 @@ export class AccountDataSpacesResolver implements Resolve<Array<AccountDataSpace
             }
           }
         }),
-        filter((dataSpace) => !!dataSpace && dataSpace[0].key.accountId === id),
+        filter((dataSpace) => !!dataSpace && dataSpace[0].accountId === id),
         take(1),
       );
   }
