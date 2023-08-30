@@ -96,7 +96,7 @@ export interface DataSpaceAttributeDTO {
   name: string;
   value: unknown;
   valueAsString: string;
-  type: string;
+  type: AttributeType;
 }
 
 export interface DataSpaceAttribute {
@@ -104,5 +104,12 @@ export interface DataSpaceAttribute {
   name: string;
   value: unknown;
   valueAsString: string;
-  type: string;
+  type: AttributeType;
+}
+
+export enum AttributeType {
+  "LONG" = "LONG",
+  "INT" = "INT",
+  "STRING" = "STRING",
+  "BOOLEAN" = "BOOLEAN",
 }

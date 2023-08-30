@@ -49,7 +49,13 @@
     <ng-template #editTemplate>
       <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.name" /></td>
       <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.valueAsString" /></td>
-      <td><input type="text" nz-input [(ngModel)]="editCache[data.id].data.type" /></td>
+      <td>
+        <nz-select [(ngModel)]="editCache[data.id].data.type">
+          <ng-container *ngFor="let o of attributeTypeOptions">
+            <nz-option [nzValue]="o.value" [nzLabel]="o.label"></nz-option>
+          </ng-container>
+        </nz-select>
+      </td>
       <td>
         <button
           nz-button

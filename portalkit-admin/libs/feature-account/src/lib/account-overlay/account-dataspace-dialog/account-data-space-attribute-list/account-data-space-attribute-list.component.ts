@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {DataSpaceAttribute} from "../../../account-page/account-page-data/account.types";
+import {AttributeType, DataSpaceAttribute} from "../../../account-page/account-page-data/account.types";
 
 @Component({
   selector: "pk-account-data-space-attribute-list",
@@ -11,9 +11,11 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
 
   i = 0;
   editCache: { [key: number]: { edit: boolean; data: DataSpaceAttribute } } = {};
+  attributeTypeOptions: Array<{label: string, value: string}> = [];
 
   ngOnInit() {
     this.updateEditCache();
+    this.attributeTypeOptions = Object.keys(AttributeType).map((key) => ({label: key, value: key}));
   }
 
   addRow(): void {
@@ -25,7 +27,7 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
         name: ``,
         valueAsString: ``,
         value: '',
-        type: ''
+        type: AttributeType.STRING
       }
     ];
     this.i++;
@@ -63,6 +65,6 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
         data: { ...item }
       };
     });
-    this.i = this.attributes[this.attributes.length -1].id;
+    this.i = this.attributes[this.attributes.length -1].id + 1;
   }
 }

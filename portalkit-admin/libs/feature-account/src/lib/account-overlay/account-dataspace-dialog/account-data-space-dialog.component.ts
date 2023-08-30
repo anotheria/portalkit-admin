@@ -1,9 +1,9 @@
-import { Component, Inject } from "@angular/core";
-import { NZ_MODAL_DATA, NzModalRef } from "ng-zorro-antd/modal";
-import { UntypedFormBuilder } from "@angular/forms";
-import { AccountService } from "../../account-page/account-page-data/account.service";
-import { NzNotificationService } from "ng-zorro-antd/notification";
-import {Account, AccountDataSpace, ValueName} from "../../account-page/account-page-data/account.types";
+import {Component, Inject} from "@angular/core";
+import {NZ_MODAL_DATA, NzModalRef} from "ng-zorro-antd/modal";
+import {UntypedFormBuilder} from "@angular/forms";
+import {AccountService} from "../../account-page/account-page-data/account.service";
+import {NzNotificationService} from "ng-zorro-antd/notification";
+import {Account, AccountDataSpace, AttributeType, ValueName} from "../../account-page/account-page-data/account.types";
 import {Observable} from "rxjs";
 import {CachedAccountTypesService} from "../../account-page/account-page-data/cached-account-types.service";
 
@@ -42,7 +42,7 @@ export class AccountDataSpaceDialogComponent {
         accountId: this.account.accountId.internalId,
         name: dataSpace.name,
         type: dataSpace.value,
-        attributes: [{id:0, name: '', value: '', valueAsString: '', type: ''}]
+        attributes: [{id:0, name: '', value: '', valueAsString: '', type: AttributeType.STRING}]
       }
     ];
   }
