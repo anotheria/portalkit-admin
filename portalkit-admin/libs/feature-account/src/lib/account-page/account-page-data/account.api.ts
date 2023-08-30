@@ -270,17 +270,17 @@ export class AccountApi extends BaseApi {
         ],
       },
     ];
-    return of(mockArray);
-/*
+    //return of(mockArray);
+
     return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/${accountId}`, { observe: "body" }).pipe(
       map((response) => {
         if (response.success) {
-          return response.results.data || [];
+          return response.results.data || mockArray; //TODO: remove mock then BE will return data
         } else {
           super.handleErrorResponse(response);
         }
       }),
-    );*/
+    );
   }
 
   addDataSpaceAttribute(accountId: string): Observable<boolean> {
