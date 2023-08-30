@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { filter, Observable, take, tap } from "rxjs";
+import {filter, map, Observable, take, tap} from "rxjs";
 
 import { AccountDataSpace } from "./account.types";
 import { accountsFeature, AccountsState } from "./store/account.reducer";
@@ -19,19 +19,16 @@ export class AccountDataSpacesResolver implements Resolve<Array<AccountDataSpace
 
   getFromStoreOrAPI(id: string): Observable<Array<AccountDataSpace> | null> {
     return this.store
-      .select((state) => state[accountsFeature].dataSpace.data)
+      .select((state) => state[accountsFeature].dataSpace)
       .pipe(
-        tap((dataSpace) => {
-          if (!dataSpace || dataSpace[0].accountId !== id) {
-            if (id) {
-              this.store.dispatch(AccountActions.loadDataSpaces({ id }));
-            } else {
-              this.store.dispatch(AccountActions.loadDataSpacesSuccess({ data: dataSpace as Array<AccountDataSpace> }));
-            }
+        tap((dsState) => {
+          if (!dsState.status.loading && dsState.status?.id?.toString() != id) {
+            this.store.dispatch(AccountActions.loadDataSpaces({id}));
           }
         }),
-        filter((dataSpace) => !!dataSpace && dataSpace[0].accountId === id),
+        filter((dsState) => !dsState.status.loading && dsState.status?.id?.toString() == id),
+        map((dsState) => dsState.data),
         take(1),
-      );
+      )
   }
 }

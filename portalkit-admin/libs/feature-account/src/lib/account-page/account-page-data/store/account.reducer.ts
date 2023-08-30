@@ -74,10 +74,10 @@ export const AccountsDataSpaceReducer = createReducer<AccountsDataSpaceState>(
       status: {loading: true, loaded: false, error: null}
     }
   }),
-  on(AccountActions.loadDataSpacesSuccess, (state, {data}) => {
+  on(AccountActions.loadDataSpacesSuccess, (state, {data, id}) => {
     return {
       ...state,
-      status: {loading: false, loaded: true, error: null },
+      status: {loading: false, loaded: true, error: null, id },
       data
     };
   }),

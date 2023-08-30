@@ -271,12 +271,11 @@ export class AccountApi extends BaseApi {
       },
     ];
     return of(mockArray);
-    //return of([mock1, mock2]);
-    /*
+/*
     return this.httpClient.get<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/${accountId}`, { observe: "body" }).pipe(
       map((response) => {
         if (response.success) {
-          return response.results.data;
+          return response.results.data || [];
         } else {
           super.handleErrorResponse(response);
         }

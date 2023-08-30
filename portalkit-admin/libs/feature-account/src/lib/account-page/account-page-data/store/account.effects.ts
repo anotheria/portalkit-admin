@@ -50,7 +50,7 @@ export class AccountEffects {
       ofType(AccountActions.loadDataSpaces),
       switchMap(({id}) =>
         this.accountService.loadAccountDataSpaces(id).pipe(
-          map((data) => AccountActions.loadDataSpacesSuccess({ data })),
+          map((data) => AccountActions.loadDataSpacesSuccess({ data, id })),
           catchError((error) => of(AccountActions.loadDataSpacesError({ error }))),
         ),
       ),

@@ -44,6 +44,7 @@ export type StatusState = {
   loaded: boolean;
   loading: boolean;
   error: unknown;
+  id?: string;
 }
 
 export const initialStatusState: StatusState = {

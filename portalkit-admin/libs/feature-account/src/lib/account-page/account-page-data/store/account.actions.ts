@@ -16,6 +16,6 @@ export const AccountActions = {
   updateAccountError: createAction("[Accounts][Error] Update account", props<{ error: unknown }>()),
 
   loadDataSpaces: createAction("[Accounts] Load data-spaces", props<{ id: string }>()),
-  loadDataSpacesSuccess: createAction("[Accounts][Success] Load data-spaces", props<{ data: Array<AccountDataSpace> }>()),
+  loadDataSpacesSuccess: createAction("[Accounts][Success] Load data-spaces", props<{ data: Array<AccountDataSpace>, id: string }>()),
   loadDataSpacesError: createAction("[Accounts][Error] Load data-spaces", props<{ error: unknown }>()),
 };
