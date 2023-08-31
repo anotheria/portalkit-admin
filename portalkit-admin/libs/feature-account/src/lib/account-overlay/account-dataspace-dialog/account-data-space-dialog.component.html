@@ -10,7 +10,8 @@
 <ng-container *nzModalFooter>
   <nz-space nzSize="small">
     <button *nzSpaceItem nz-button nzType="default" (click)="onCancel()">Cancel</button>
-    <button *nzSpaceItem nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="menuDataSpaceOptions">
+    <button *nzSpaceItem nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="menuDataSpaceOptions"
+      [disabled]="!canAddDataSpace">
       <span nz-icon nzType="plus"></span> Add data-space <i nz-icon nzType="down"></i>
     </button>
   </nz-space>
