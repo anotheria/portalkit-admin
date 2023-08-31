@@ -3,7 +3,7 @@
 </ng-container>
 
 <div *ngFor="let dataSpace of dataSpaces" class="cnt-data-space">
-  <pk-account-data-space-title [dataSpace]="dataSpace"></pk-account-data-space-title>
+  <pk-account-data-space-title [dataSpace]="dataSpace" (deleteDataSpace)="onDeleteDataSpace($event)"></pk-account-data-space-title>
   <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes"></pk-account-data-space-attribute-list>
 </div>
 
@@ -11,7 +11,7 @@
   <nz-space nzSize="small">
     <button *nzSpaceItem nz-button nzType="default" (click)="onCancel()">Cancel</button>
     <button *nzSpaceItem nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="menuDataSpaceOptions"
-      [disabled]="!canAddDataSpace">
+      [nzDisabled]="!canAddDataSpace">
       <span nz-icon nzType="plus"></span> Add data-space <i nz-icon nzType="down"></i>
     </button>
   </nz-space>

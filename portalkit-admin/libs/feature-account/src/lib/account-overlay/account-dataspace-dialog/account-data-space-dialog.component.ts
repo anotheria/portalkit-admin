@@ -36,6 +36,11 @@ export class AccountDataSpaceDialogComponent {
     this.modal.close();
   }
 
+  onDeleteDataSpace(dataSpaceType: number) {
+    this.dataSpaces = this.dataSpaces.filter((ds) => ds.type != dataSpaceType);
+    this.initDSTypeSelectOptions();
+  }
+
   onAddDataSpace(dataSpace: ValueName) {
     this.dataSpaces = [
       ...this.dataSpaces,

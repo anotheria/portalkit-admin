@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {AccountDataSpace} from "../../../account-page/account-page-data/account.types";
 
 @Component({
@@ -8,9 +8,9 @@ import {AccountDataSpace} from "../../../account-page/account-page-data/account.
 })
 export class AccountDataSpaceTitleComponent {
   @Input() dataSpace!: AccountDataSpace;
-  editTitle = false;
+  @Output() deleteDataSpace = new EventEmitter<number>();
 
-  onDeleteDataSpace(dataSpaceId: number) {
-    console.log('onDeleteDataSpace, id=' + dataSpaceId);
+  onDeleteDataSpace(dataSpaceType: number) {
+    this.deleteDataSpace.emit(dataSpaceType);
   }
 }
