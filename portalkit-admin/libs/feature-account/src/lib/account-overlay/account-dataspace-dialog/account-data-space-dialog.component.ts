@@ -42,7 +42,7 @@ export class AccountDataSpaceDialogComponent {
         accountId: this.account.accountId.internalId,
         name: dataSpace.name,
         type: dataSpace.value,
-        attributes: [{id:0, name: '', value: '', valueAsString: '', type: AttributeType.STRING}]
+        attributes: [{id:0, name: '', value: '', valueAsString: '', type: null}]
       }
     ];
   }

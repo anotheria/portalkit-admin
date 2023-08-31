@@ -16,6 +16,9 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
   ngOnInit() {
     this.updateEditCache();
     this.attributeTypeOptions = Object.keys(AttributeType).map((key) => ({label: key, value: key}));
+    if(this.attributes.length == 1 && !this.attributes[0].valueAsString) { // one attribute without value force attr edit
+      this.startEdit(this.attributes[0].id)
+    }
   }
 
   addRow(): void {
@@ -27,12 +30,12 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
         name: ``,
         valueAsString: ``,
         value: '',
-        type: AttributeType.STRING
+        type: null
       }
     ];
-    this.i++;
     this.updateEditCache();
     this.startEdit(newId);
+    this.i++;
   }
 
   deleteRow(id: number): void {

@@ -104,7 +104,7 @@ export interface DataSpaceAttribute {
   name: string;
   value: unknown;
   valueAsString: string;
-  type: AttributeType;
+  type: AttributeType | unknown;
 }
 
 export enum AttributeType {
