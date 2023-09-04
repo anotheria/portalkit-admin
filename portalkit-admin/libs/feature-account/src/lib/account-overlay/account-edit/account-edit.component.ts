@@ -7,6 +7,7 @@ import { accountsFeature, AccountsState } from "../../account-page/account-page-
 import {AccountActions} from "../../account-page/account-page-data/store/account.actions";
 import {AccountService} from "../../account-page/account-page-data/account.service";
 import {filter, map, take} from "rxjs";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: "pk-account-edit",
@@ -22,7 +23,8 @@ export class AccountEditComponent {
     @Inject(NZ_MODAL_DATA) public modalData: any,
     private modal: NzModalRef,
     private readonly store: Store<{ [accountsFeature]: AccountsState }>,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private notificationService: NzNotificationService,
   ) {
     this.account = this.modalData["account"];
   }
@@ -39,10 +41,12 @@ export class AccountEditComponent {
         .select((state) => state[accountsFeature].entity)
         .pipe(
           filter((entity) => entity.status.loaded),
-          map((entity) => entity.entity),
           take(1),
         )
-        .subscribe((candidate) => this.modal.close());
+        .subscribe((accountState) => {
+          if (!accountState.status.error) this.notificationService.success('Account updated', '' + accountState.entity?.email);
+          this.modal.close();
+        });
     }
   }
 
