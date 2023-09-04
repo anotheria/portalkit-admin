@@ -19,7 +19,6 @@ export class BaseApi {
     throw new Error(response.errorKey);
   }
   handleHttpError(error: HttpErrorResponse) {
-    console.error(error);
-    return throwError(() => new Error('Http error; please try again later.'));
+    return throwError(() => new Error(JSON.stringify(error)));
   }
 }

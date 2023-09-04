@@ -3,7 +3,7 @@ import {NZ_MODAL_DATA, NzModalRef} from "ng-zorro-antd/modal";
 import {UntypedFormBuilder} from "@angular/forms";
 import {AccountService} from "../../account-page/account-page-data/account.service";
 import {NzNotificationService} from "ng-zorro-antd/notification";
-import {Account, AccountDataSpace, AttributeType, ValueName} from "../../account-page/account-page-data/account.types";
+import {Account, AccountDataSpace, ValueName} from "../../account-page/account-page-data/account.types";
 import {map, Observable, tap} from "rxjs";
 import {CachedAccountTypesService} from "../../account-page/account-page-data/cached-account-types.service";
 

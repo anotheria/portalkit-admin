@@ -40,7 +40,6 @@ export class AccountsListComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["accountList"] && this.searchForm) {
-      console.log('changes["accountList"]');
       this.pageSize = this.accountList.itemsOnPage;
       this.pageIndex = this.accountList.pageNumber;
       this.total = this.accountList.totalItems;
@@ -53,13 +52,11 @@ export class AccountsListComponent implements OnChanges, OnInit {
 
   onQueryParamsChange(params: NzTableQueryParams): void {
     if (this.loading) return;
-    console.log('onQueryParamsChange');
     const { pageSize, pageIndex, sort, filter } = params;
 
     const currentSort = sort.find((item) => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
-    console.log("sortField: "+sortField + "; sortOrder: "+sortOrder);
 
     let change: AccountFilter = {
       pageIndex: pageIndex,
