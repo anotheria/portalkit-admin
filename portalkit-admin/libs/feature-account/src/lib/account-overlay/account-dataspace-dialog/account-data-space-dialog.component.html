@@ -6,6 +6,7 @@
   <pk-account-data-space-title [dataSpace]="dataSpace" (deleteDataSpace)="onDeleteDataSpace($event)"></pk-account-data-space-title>
   <pk-account-data-space-attribute-list [attributes]="dataSpace.attributes" (updateAttribute)="onUpdateAttribute(dataSpace, $event)" (deleteAttribute)="onDeleteAttribute(dataSpace, $event)"></pk-account-data-space-attribute-list>
 </div>
+<nz-empty *ngIf="dataSpaces.length < 1"></nz-empty>
 
 <ng-container *nzModalFooter>
   <nz-space nzSize="small">

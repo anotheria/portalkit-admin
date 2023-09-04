@@ -13,6 +13,7 @@ import { NzInputModule } from "ng-zorro-antd/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountDataSpaceTitleComponent } from "./account-data-space-title/account-data-space-title.component";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
 
 @NgModule({
   declarations: [AccountDataSpaceDialogComponent, AccountDataSpaceTitleComponent],
@@ -31,6 +32,7 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
         ReactiveFormsModule,
         FormsModule,
         NzDropDownModule,
+        NzEmptyModule,
     ],
   exports: [AccountDataSpaceDialogComponent],
 })
