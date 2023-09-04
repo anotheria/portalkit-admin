@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { PaginatedContent } from "@portalkit-admin/core";
-import {Account, AccountDataSpace, AccountFilter} from "../account.types";
+import {Account, AccountDataSpace, AccountFilter, DataSpaceAttribute} from "../account.types";
 
 export const AccountActions = {
   loadAccounts: createAction("[Accounts] Load accounts", props<{ filter: AccountFilter }>()),
@@ -18,4 +18,12 @@ export const AccountActions = {
   loadDataSpaces: createAction("[Accounts] Load data-spaces", props<{ id: string }>()),
   loadDataSpacesSuccess: createAction("[Accounts][Success] Load data-spaces", props<{ data: Array<AccountDataSpace>, id: string }>()),
   loadDataSpacesError: createAction("[Accounts][Error] Load data-spaces", props<{ error: unknown }>()),
+
+  updateDataSpaceAttribute: createAction("[Accounts] Update data-space attribute", props<{ds: AccountDataSpace, attr: DataSpaceAttribute}>()),
+  updateDataSpaceAttributeSuccess: createAction("[Accounts][Success] Update data-space attribute"),
+  updateDataSpaceAttributeError: createAction("[Accounts][Error] Update data-space attribute", props<{ error: unknown }>()),
+
+  deleteDataSpaceAttribute: createAction("[Accounts] Delete data-space attribute", props<{ds: AccountDataSpace, attr: DataSpaceAttribute}>()),
+  deleteDataSpaceAttributeSuccess: createAction("[Accounts][Success] Delete data-space attribute"),
+  deleteDataSpaceAttributeError: createAction("[Accounts][Error] Delete data-space attribute", props<{ error: unknown }>()),
 };

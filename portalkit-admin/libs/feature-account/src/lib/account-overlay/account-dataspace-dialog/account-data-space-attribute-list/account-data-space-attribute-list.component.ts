@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {AttributeType, DataSpaceAttribute} from "../../../account-page/account-page-data/account.types";
+import {AccountService} from "../../../account-page/account-page-data/account.service";
 
 @Component({
   selector: "pk-account-data-space-attribute-list",
@@ -9,9 +10,14 @@ import {AttributeType, DataSpaceAttribute} from "../../../account-page/account-p
 export class AccountDataSpaceAttributeListComponent implements OnInit {
   @Input() attributes: DataSpaceAttribute[] = [];
 
+  @Output() updateAttribute = new EventEmitter<DataSpaceAttribute>();
+  @Output() deleteAttribute = new EventEmitter<DataSpaceAttribute>();
+
   i = 0;
   editCache: { [key: number]: { edit: boolean; data: DataSpaceAttribute } } = {};
   attributeTypeOptions: Array<{label: string, value: string}> = [];
+
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.updateEditCache();
@@ -39,6 +45,7 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
   }
 
   deleteRow(id: number): void {
+    this.deleteAttribute.emit(this.attributes.find((attr) => attr.id === id));
     this.attributes = this.attributes.filter(d => d.id !== id);
     this.updateEditCache();
   }
@@ -59,6 +66,7 @@ export class AccountDataSpaceAttributeListComponent implements OnInit {
     const index = this.attributes.findIndex(item => item.id === id);
     Object.assign(this.attributes[index], this.editCache[id].data);
     this.editCache[id].edit = false;
+    this.updateAttribute.emit(this.attributes[index]);
   }
 
   updateEditCache(): void {

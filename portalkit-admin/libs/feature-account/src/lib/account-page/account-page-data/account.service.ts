@@ -9,7 +9,7 @@ import {
   AccountDTO,
   AccountFilter,
   AccountStatus,
-  AccountType,
+  AccountType, DataSpaceAttribute,
   ValueName
 } from "./account.types";
 
@@ -72,6 +72,14 @@ export class AccountService {
     return this.accountApi
       .loadAccountDataSpaces(id)
       .pipe(map((dtos) => this.accountSerializer.deserializeAccountDataSpaces(dtos)));
+  }
+
+  updateDataSpaceAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute): Observable<boolean> {
+    return this.accountApi.updateDataSpaceAttribute(ds, attr);
+  }
+
+  removeDataSpaceAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute): Observable<boolean> {
+    return this.accountApi.removeDataSpaceAttribute(ds, attr);
   }
 
 }

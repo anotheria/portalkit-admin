@@ -10,13 +10,14 @@ import {
   PaginatedContent,
 } from "@portalkit-admin/core";
 import {
+  AccountDataSpace,
   AccountDataSpaceDTO,
   AccountDTO,
   AccountFilterDTO,
   AccountStatus,
   AccountType,
   AccountUpdate,
-  AttributeType,
+  AttributeType, DataSpaceAttribute,
   ValueName,
 } from "./account.types";
 
@@ -283,13 +284,13 @@ export class AccountApi extends BaseApi {
     );
   }
 
-  addDataSpaceAttribute(accountId: string): Observable<boolean> {
+  updateDataSpaceAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute): Observable<boolean> {
     const request = {
-      accountId,
-      dataspaceId: 0,
-      attributeName: "",
-      attributeValue: "",
-      type: "",
+      accountId: ds.accountId,
+      dataspaceId: ds.type,
+      attributeName: attr.name,
+      attributeValue: attr.valueAsString,
+      type: attr.type
     };
     return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/add-attribute`, request).pipe(
       map((response) => {
@@ -303,11 +304,11 @@ export class AccountApi extends BaseApi {
     );
   }
 
-  removeDataSpaceAttribute(accountId: string, dataspaceId: number, attributeName: string): Observable<boolean> {
+  removeDataSpaceAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute): Observable<boolean> {
     const request = {
-      accountId,
-      dataspaceId,
-      attributeName,
+      accountId: ds.accountId,
+      dataspaceId: ds.type,
+      attributeName: attr.name,
     };
     return this.httpClient.post<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace/remove-attribute`, request).pipe(
       map((response) => {

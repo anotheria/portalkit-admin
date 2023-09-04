@@ -3,7 +3,12 @@ import {NZ_MODAL_DATA, NzModalRef} from "ng-zorro-antd/modal";
 import {UntypedFormBuilder} from "@angular/forms";
 import {AccountService} from "../../account-page/account-page-data/account.service";
 import {NzNotificationService} from "ng-zorro-antd/notification";
-import {Account, AccountDataSpace, ValueName} from "../../account-page/account-page-data/account.types";
+import {
+  Account,
+  AccountDataSpace,
+  DataSpaceAttribute,
+  ValueName
+} from "../../account-page/account-page-data/account.types";
 import {map, Observable, tap} from "rxjs";
 import {CachedAccountTypesService} from "../../account-page/account-page-data/cached-account-types.service";
 
@@ -52,6 +57,14 @@ export class AccountDataSpaceDialogComponent {
       }
     ];
     this.initDSTypeSelectOptions();
+  }
+
+  onUpdateAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute) {
+    this.accountService.updateDataSpaceAttribute(ds, attr).subscribe();
+  }
+
+  onDeleteAttribute(ds: AccountDataSpace, attr: DataSpaceAttribute) {
+    this.accountService.removeDataSpaceAttribute(ds, attr).subscribe();
   }
 
   private initDSTypeSelectOptions() {
