@@ -8,9 +8,9 @@ import {AccountDataSpace} from "../../../account-page/account-page-data/account.
 })
 export class AccountDataSpaceTitleComponent {
   @Input() dataSpace!: AccountDataSpace;
-  @Output() deleteDataSpace = new EventEmitter<number>();
+  @Output() deleteDataSpace = new EventEmitter<AccountDataSpace>();
 
-  onDeleteDataSpace(dataSpaceType: number) {
+  onDeleteDataSpace(dataSpaceType: AccountDataSpace) {
     this.deleteDataSpace.emit(dataSpaceType);
   }
 }

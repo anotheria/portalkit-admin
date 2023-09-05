@@ -188,4 +188,23 @@ export class AccountApi extends BaseApi {
       }),
     );
   }
+
+  deleteDataSpace(ds: AccountDataSpace) {
+    const request = {
+      accountId: {
+        internalId: ds.accountId
+      },
+      type: ds.type
+    };
+    return this.httpClient.delete<ApiResponseDTO>(`${this.basePath}/admin-api/dataspace`, {body: request}).pipe(
+      map((response) => {
+        if (response.success) {
+          return true;
+        } else {
+          super.handleErrorResponse(response);
+          return false;
+        }
+      }),
+    );
+  }
 }

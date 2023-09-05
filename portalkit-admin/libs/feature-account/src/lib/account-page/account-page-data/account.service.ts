@@ -82,4 +82,7 @@ export class AccountService {
     return this.accountApi.removeDataSpaceAttribute(ds, attr);
   }
 
+  deleteDataSpace(ds: AccountDataSpace): Observable<boolean> {
+    return this.accountApi.deleteDataSpace(ds);
+  }
 }
