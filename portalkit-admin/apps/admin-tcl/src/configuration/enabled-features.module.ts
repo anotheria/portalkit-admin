@@ -7,8 +7,8 @@ import {FeatureAccountModule} from "@portalkit-admin/feature-account";
 @NgModule({
   imports: [
     FeatureAccountModule,
-    FeatureCustomerCareModule,
-    FeatureProductModule,
+    //FeatureCustomerCareModule,
+    //FeatureProductModule,
   ],
   providers: [], // used to detect readiness
   exports: [RouterModule],

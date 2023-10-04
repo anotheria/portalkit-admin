@@ -53,7 +53,6 @@ export class HomePageComponent implements OnDestroy {
             this.activeSubMenuRoute = subMenu.routerLink;
           }
         });
-
       }
     });
   }
