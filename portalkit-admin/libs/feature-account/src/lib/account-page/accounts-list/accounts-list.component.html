@@ -67,7 +67,6 @@
     <tr>
       <th>Account Id</th>
       <th nzColumnKey="EMAIL" [nzSortFn]="true">email</th>
-      <th nzColumnKey="NAME" [nzSortFn]="true">Name</th>
       <th nzColumnKey="STATUS" [nzSortFn]="true">Status</th>
       <th nzColumnKey="REGISTRATION_DATE" [nzSortFn]="true">Registered</th>
       <th>Action</th>
@@ -79,7 +78,6 @@
         <a [routerLink]="['/', { outlets: { overlay: ['accounts', data.accountId.internalId, 'edit'] } }]"
         >{{ data.accountId.internalId }}</a></td>
       <td>{{ data.email }}</td>
-      <td>{{ data.name }}</td>
       <td><span *ngFor="let s of data.statuses" nz-tooltip [nzTooltipTitle]="s.toString()">{{s.toString()[0]}}</span></td>
       <td>{{ data.registrationTimestamp | date : "yyyy-MM-dd hh:mm:ss" }}</td>
       <td>
