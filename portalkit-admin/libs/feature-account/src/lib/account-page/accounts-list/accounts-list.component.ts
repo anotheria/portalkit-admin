@@ -111,4 +111,22 @@ export class AccountsListComponent implements OnChanges, OnInit {
   onSignInAs(accountId: string) {
     this.accountService.signInAs(accountId);
   }
+
+
+  getStatusShortName(status: string): string {
+    switch (status) {
+      case "VERIFIED":
+        return "Ve";
+      case "VACATIONING":
+        return "Va";
+      case "REVIEWED":
+        return "Rev";
+      case "MARKED_FOR_DELETION":
+        return "D";
+      case "REGISTERED":
+      case "CONFIRMED":
+      default:
+        return status[0];
+    }
+  }
 }

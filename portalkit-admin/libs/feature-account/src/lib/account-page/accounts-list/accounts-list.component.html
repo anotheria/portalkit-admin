@@ -80,7 +80,7 @@
         >{{ data.accountId.internalId }}</a></td>
       <td>{{ data.email }}</td>
       <td>{{ data.type }}</td>
-      <td><span *ngFor="let s of data.statuses" nz-tooltip [nzTooltipTitle]="s.toString()">{{s.toString()[0]}}</span></td>
+      <td><span *ngFor="let s of data.statuses" nz-tooltip [nzTooltipTitle]="s.toString()">{{getStatusShortName(s)}}</span></td>
       <td>{{ data.registrationTimestamp | date : "yyyy-MM-dd hh:mm:ss" }}</td>
       <td>
         <button
