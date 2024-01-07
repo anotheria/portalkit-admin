@@ -9,9 +9,13 @@ import {
   AccountDTO,
   AccountFilter,
   AccountStatus,
-  AccountType, DataSpaceAttribute,
+  AccountType,
+  AdminFilters,
+  AdminFiltersType,
+  DataSpaceAttribute,
   ValueName
 } from "./account.types";
+import { UntypedFormGroup } from "@angular/forms";
 
 @Injectable({ providedIn: "root" })
 export class AccountService {
@@ -84,5 +88,17 @@ export class AccountService {
 
   deleteDataSpace(ds: AccountDataSpace): Observable<boolean> {
     return this.accountApi.deleteDataSpace(ds);
+  }
+
+  saveAdminFilters(formValue: UntypedFormGroup, filtersType: AdminFiltersType): void {
+    const adminFilters = this.getAdminFilters();
+    const updatedAdminFilters = { ...adminFilters, [filtersType]: formValue.value };
+
+    localStorage.setItem('adminFilters', JSON.stringify(updatedAdminFilters));
+  }
+
+  getAdminFilters(): AdminFilters | null {
+    const savedForm = localStorage.getItem('adminFilters');
+    return savedForm ? JSON.parse(savedForm) : null;
   }
 }
