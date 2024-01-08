@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
 import { PaginatedContent } from "@portalkit-admin/core";
-import { Account, AccountFilter, AccountStatus } from "../account-page-data/account.types";
+import { Account, AccountFilter, AccountStatus, AdminFiltersType } from "../account-page-data/account.types";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { CachedAccountTypesService } from "../account-page-data/cached-account-types.service";
 import { Observable } from "rxjs";
-import {AccountService} from "../account-page-data/account.service";
+import { AccountService } from "../account-page-data/account.service";
 
 @Component({
   selector: "pk-accounts-list",
@@ -36,6 +36,11 @@ export class AccountsListComponent implements OnChanges, OnInit {
       includedStatuses: [[]],
       excludedStatuses: [[]],
     });
+
+    const savedFilters = this.accountService.getAdminFilters()?.accountsListForm;
+    if (savedFilters) {
+      this.searchForm.patchValue(savedFilters);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -79,6 +84,7 @@ export class AccountsListComponent implements OnChanges, OnInit {
   }
 
   submitFilterForm(): void {
+    this.accountService.saveAdminFilters(this.searchForm, AdminFiltersType.ACCOUNTS_LIST);
     this.queryChange.emit({
       pageIndex: 1,
       itemsOnPage: this.pageSize,

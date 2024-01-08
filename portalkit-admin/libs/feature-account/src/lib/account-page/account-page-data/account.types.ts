@@ -1,3 +1,5 @@
+import { UntypedFormGroup } from "@angular/forms";
+
 export interface AccountDTO {
   accountId: AccountId;
   email: string;
@@ -112,4 +114,12 @@ export enum AttributeType {
   "INT" = "INT",
   "STRING" = "STRING",
   "BOOLEAN" = "BOOLEAN",
+}
+
+export enum AdminFiltersType {
+  ACCOUNTS_LIST = "accountsListForm",
+}
+
+export interface AdminFilters {
+  [AdminFiltersType.ACCOUNTS_LIST]: UntypedFormGroup;
 }
